@@ -27,8 +27,10 @@ app.use(function(req, res, next) {
   next();
 }).use(cookieParser());;
 
-const port = process.env.PORT || '8888';
+const port = process.env.PORT || '3200';
 app.set('port', port);
+
+require("./server/app")(app);
 
 
 // Create HTTP server
@@ -39,39 +41,39 @@ var client_id = '77dfb73de9a24ab78edf78620fec9c0f'; // Your client id
 var client_secret = '09b589089571483cb0448444bc310224'; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
-var SpotifyWebApi = require('spotify-web-api-node');
-
-// credentials are optional
-var spotifyApi = new SpotifyWebApi({
-  clientId: '77dfb73de9a24ab78edf78620fec9c0f',
-  clientSecret: '09b589089571483cb0448444bc310224',
-  redirect_uri: 'http://localhost:8888/callback',
-});
-
-// Retrieve an access token.
-spotifyApi.clientCredentialsGrant().then(
-  function(data) {
-    console.log('The access token expires in ' + data.body['expires_in']);
-    console.log('The access token is ' + data.body['access_token']);
-    // Save the access token so that it's used in future calls
-    spotifyApi.setAccessToken(data.body['access_token']);
-  },
-  function(err) {
-    console.log('Something went wrong when retrieving an access token', err);
-  }
-);
-
-
-app.get('/login', function (req, res) {
-  spotifyApi.searchArtists('Love')
-    .then(function(data) {
-      console.log('Search artists by "Love"', data.body);
-      res.status(200).send(data.body);
-    }, function(err) {
-      console.error(err);
-      res.status(400).send(err);
-    });
-})
+// var SpotifyWebApi = require('spotify-web-api-node');
+//
+// // credentials are optional
+// var spotifyApi = new SpotifyWebApi({
+//   clientId: '77dfb73de9a24ab78edf78620fec9c0f',
+//   clientSecret: '09b589089571483cb0448444bc310224',
+//   redirect_uri: 'http://localhost:8888/callback',
+// });
+//
+// // Retrieve an access token.
+// spotifyApi.clientCredentialsGrant().then(
+//   function(data) {
+//     console.log('The access token expires in ' + data.body['expires_in']);
+//     console.log('The access token is ' + data.body['access_token']);
+//     // Save the access token so that it's used in future calls
+//     spotifyApi.setAccessToken(data.body['access_token']);
+//   },
+//   function(err) {
+//     console.log('Something went wrong when retrieving an access token', err);
+//   }
+// );
+//
+//
+// app.get('/login', function (req, res) {
+//   spotifyApi.searchArtists('Love')
+//     .then(function(data) {
+//       console.log('Search artists by "Love"', data.body);
+//       res.status(200).send(data.body);
+//     }, function(err) {
+//       console.error(err);
+//       res.status(400).send(err);
+//     });
+// })
 
 
 /**

@@ -20,7 +20,7 @@ export class AppComponent {
       })
     };
 
-    this._http.get('http://localhost:8888/login', httpOptions)
+    this._http.get('http://localhost:3200/api/artists', httpOptions)
       .subscribe(
       (data: any) => {
         this.artists = data.artists.items;
