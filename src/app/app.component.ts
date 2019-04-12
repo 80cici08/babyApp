@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,27 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'MusicApp';
+  artists: any;
+
+  constructor(private _http: HttpClient) {
+  }
+
+  login() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+
+    this._http.get('http://localhost:8888/login', httpOptions)
+      .subscribe(
+      (data: any) => {
+        this.artists = data.artists.items;
+        console.log(data.artists.items);
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
 }
