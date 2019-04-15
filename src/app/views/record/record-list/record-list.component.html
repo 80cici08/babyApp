@@ -1,3 +1,70 @@
-<p>
-  record-list works!
-</p>
+<!--Header-->
+<nav class="navbar mynav navbar-light navbar-expand-md" style="background-color: #f8f9fa;">
+  <div class="container">
+    <div>
+      <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+        class="navbar-toggler-icon"></span></button>
+    </div>
+    <div class="collapse navbar-collapse" id="navcol-1">
+      <ul class="nav navbar-nav clearfix">
+        <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Photo Album </a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Baby info </a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link" href="#">8 followers </a></li>
+      </ul>
+    </div>
+    <div>
+      <a class="navbar-text ml-auto" href="#">Logout</a>
+    </div>
+  </div>
+
+</nav>
+<!--添加按钮-->
+<div class="plus-box"><a class="navbar-text ml-auto" [routerLink]="['./','new']"><i class="fas fa-plus fontawsome_icon"></i></a></div>
+
+<!--Content-->
+<div class="container cl-container-padding">
+
+
+  <div class="babyimg">
+    <!--<a class="edit-btn" href="#">Edit</a>-->
+    <a class="float-right"><span class="fas fa-cog nudge-right-10px fontawsome_icon"></span></a>
+
+    <img align="middle" class="img-responsive img-rounded cl-widget-images" src="data:image/jpeg;base64,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">
+  </div>
+  <small class="form-text">by Mom，1 hour ago</small>
+  <small class="form-text float-right"><i class="icon-location"></i>Seattle</small>
+  <div><span><i class="icon-like fontawsome_icon"></i>爷爷，奶奶赞了一个！</span></div>
+  <!--icon-likefill 是实心的红心-->
+  <!--评论区-->
+  <div>
+    <div class="row">
+      <div class="col-md-12">
+        <strong>grandfather</strong>
+        <span class="float-right">a few seconds ago</span>
+        <p>So gorgeous and remind me of the backyard of Hogwarts！<i class="icon-delete" aria-hidden="true"></i></p>
+      </div>
+      <div class="col-md-12">
+        <strong>mother</strong>
+        <span class="float-right">a few seconds ago</span>
+        <p>So gorgeous and remind me of the backyard of Hogwarts！<i class="icon-delete" aria-hidden="true"></i></p>
+      </div>
+    </div>
+    <div>
+      <div class="input-group">
+        <input type="text" class="form-control">
+        <span class="input-group-btn col-6">
+              <a class="float-right btn btn-primary btn-sm" href="#">Add Comment</a>
+          </span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="null-box"></div>
+<!-- Footer -->
+<div class="navbar navbar-light cl-blue-navbar fixed-bottom">
+  <div class="container-fluid">
+    <a class="navbar-text ml-auto" routerLink="/profile"><i class="fas fa-user fontawsome_icon"></i></a>
+  </div>
+</div>
