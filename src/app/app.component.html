@@ -1,21 +1,7 @@
-<div class="container">
-  <div id="login">
-    <h1>This is an example of the Authorization Code flow</h1>
-    <!--<a href="http://localhost:8888/login" class="btn btn-primary">Log in with Spotify</a>-->
-    <a (click)="login()" class="btn btn-primary">Log in with Spotify</a>
-  </div>
-</div>
+<!--<agm-map [latitude]="lat" [longitude]="lng">-->
+  <!--<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
+<!--</agm-map>-->
 
-
-<script id="user-profile-template" type="text/x-handlebars-template">
-  <h1>Logged in as {{display_name}}</h1>
-</script>
-
-
-<div *ngFor="let artist of artists">
-  <p>{{artist.name }}</p>
-  <img class="img-responsive img-rounded cl-widget-images" [src]="artist.images[0].url" width="widget.width"/>
-</div>
 
 
 <router-outlet></router-outlet>
