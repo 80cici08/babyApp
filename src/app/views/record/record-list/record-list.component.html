@@ -1,23 +1,4 @@
-<!--Header-->
-<nav class="navbar mynav navbar-light navbar-expand-md" style="background-color: #f8f9fa;">
-  <div class="container">
-    <div>
-      <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
-        class="navbar-toggler-icon"></span></button>
-    </div>
-    <div class="collapse navbar-collapse" id="navcol-1">
-      <ul class="nav navbar-nav clearfix">
-        <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Photo Album </a></li>
-        <li class="nav-item" role="presentation"><a class="nav-link" href="#">Baby info </a></li>
-        <li class="nav-item" role="presentation"><a class="nav-link" href="#">8 followers </a></li>
-      </ul>
-    </div>
-    <div>
-      <a class="navbar-text ml-auto" href="#">Logout</a>
-    </div>
-  </div>
-
-</nav>
+<app-header></app-header>
 <!--添加按钮-->
 <div class="plus-box"><a class="navbar-text ml-auto" [routerLink]="['./','new']"><i class="fas fa-plus fontawsome_icon"></i></a></div>
 
@@ -62,9 +43,4 @@
 </div>
 
 <div class="null-box"></div>
-<!-- Footer -->
-<div class="navbar navbar-light cl-blue-navbar fixed-bottom">
-  <div class="container-fluid">
-    <a class="navbar-text ml-auto" routerLink="/profile"><i class="fas fa-user fontawsome_icon"></i></a>
-  </div>
-</div>
+<app-footer></app-footer>

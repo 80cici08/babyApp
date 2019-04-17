@@ -14,6 +14,11 @@ import { RecordEditComponent } from './views/record/record-edit/record-edit.comp
 import { FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { HeaderComponent } from './views/common/header/header.component';
+import { FooterComponent } from './views/common/footer/footer.component';
+import { BabyinfoComponent } from './views/info/babyinfo/babyinfo.component';
+import { FollowersinfoComponent } from './views/info/followersinfo/followersinfo.component';
+import { AdminComponent } from './views/user/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +28,12 @@ import { NgForm } from '@angular/forms';
     ProfileComponent,
     RecordListComponent,
     RecordNewComponent,
-    RecordEditComponent
+    RecordEditComponent,
+    HeaderComponent,
+    FooterComponent,
+    BabyinfoComponent,
+    FollowersinfoComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,9 @@ import {ProfileComponent} from './views/user/profile/profile.component';
 import {RecordListComponent} from './views/record/record-list/record-list.component';
 import {RecordNewComponent} from './views/record/record-new/record-new.component';
 import {RecordEditComponent} from './views/record/record-edit/record-edit.component';
+import {BabyinfoComponent} from './views/info/babyinfo/babyinfo.component';
+import {FollowersinfoComponent} from './views/info/followersinfo/followersinfo.component';
+import {AdminComponent} from './views/user/admin/admin.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -16,6 +19,9 @@ const routes: Routes = [
   {path: 'record', component: RecordListComponent},
   {path: 'record/new', component: RecordNewComponent},
   {path: 'record/:rid', component: RecordEditComponent},
+  {path: 'baby', component: BabyinfoComponent},
+  {path: 'follower', component: FollowersinfoComponent},
+  {path: 'admin', component: AdminComponent},
 ];
 
 @NgModule({
