@@ -25,6 +25,7 @@
     "core-js": "^2.5.4",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "ngx-google-places-autocomplete": "^2.0.3",
     "querystring": "^0.2.0",
     "request": "^2.88.0",
     "rxjs": "~6.3.3",

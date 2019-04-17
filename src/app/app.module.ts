@@ -20,6 +20,8 @@ import { BabyinfoComponent } from './views/info/babyinfo/babyinfo.component';
 import { FollowersinfoComponent } from './views/info/followersinfo/followersinfo.component';
 import { AdminComponent } from './views/user/admin/admin.component';
 
+import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,8 @@ import { AdminComponent } from './views/user/admin/admin.component';
       apiKey: 'AIzaSyDaeHXUOXFH5oc2l0pqYOT2CeWsjUv_PSU'
     }),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    GooglePlaceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
