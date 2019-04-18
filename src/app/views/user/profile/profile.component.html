@@ -1,3 +1,75 @@
-<p>
-  profile works!
-</p>
+<!--Header-->
+<div class="navbar mynav navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-text" routerLink="/record"><i
+      class="fas fa-angle-left fontawsome_icon"></i></a>
+    <a class="navbar-brand" href="javascript:void(0);"> Profile</a>
+    <a class="navbar-text ml-auto" href="#">Logout</a>
+  </div>
+</div>
+
+<div class="container cl-container-padding">
+  <form (ngSubmit)="onUpdateProfile()" #f="ngForm">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input class="form-control"
+             [class.is-invalid]="!username.valid && username.touched"
+             type="text"
+             id="username"
+             name="username"
+             placeholder="Username"
+             [(ngModel)]="user.username"
+             required #username="ngModel">
+      <small class="form-text text-danger" *ngIf="!username.valid && username.touched">
+        Please enter username.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input class="form-control"
+             [class.is-invalid]="!email.valid && email.touched"
+             type="email"
+             id="email"
+             name="email"
+             placeholder="sample@google.com"
+             [(ngModel)]="user.email"
+             email #email="ngModel">
+      <small class="form-text text-danger" *ngIf="!email.valid && email.touched">
+        Please enter correct email.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="firstname">First Name</label>
+      <input [(ngModel)]="user.firstName"
+             class="form-control"
+             type="text"
+             id="firstname"
+             name="firstname"
+             placeholder="FirstName">
+    </div>
+    <div class="form-group">
+      <label for="lastname">Last Name</label>
+      <input [(ngModel)]="user.lastName"
+             class="form-control"
+             type="text"
+             id="lastname"
+             name="lastname"
+             placeholder="LastName">
+    </div>
+    <div class="form-group form-inline">
+      <label class="mr-2">Relation to Baby</label>
+      <p *ngIf="user.type!='others'">Mom</p>
+      <input *ngIf="user.type=='others'" [(ngModel)]="user.relation"
+             class="form-control"
+             type="text"
+             name="relation">
+    </div>
+    <div class="form-group">
+      <button [disabled]="!f.valid" class="btn btn-info" type="submit">Save</button>
+    </div>
+  </form>
+</div>
+
+<app-footer></app-footer>

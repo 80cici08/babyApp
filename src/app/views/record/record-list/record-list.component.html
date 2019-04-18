@@ -1,3 +1,91 @@
-<p>
-  record-list works!
-</p>
+<app-header></app-header>
+<!--添加按钮-->
+<div class="plus-box"><a class="navbar-text ml-auto" [routerLink]="['./','new']"><i
+  class="fas fa-plus fontawsome_icon"></i></a></div>
+
+<!--Content-->
+<div class="container cl-container-padding">
+  <div>
+    <div class="jga-widget-tool float-right">
+      <a [routerLink]="['./','123']">
+        <span class="fas fa-cog"> </span>
+      </a>
+    </div>
+
+    <div>
+      <img class="img-responsive img-rounded cl-widget-images" src="http://lorempixel.com/400/200/" width="100%"/>
+    </div>
+    <!--<div class="babyimg">-->
+    <!--&lt;!&ndash;<a class="edit-btn" href="#">Edit</a>&ndash;&gt;-->
+    <!--<a class="float-right" [routerLink]="['./','123']"><span class="fas fa-cog nudge-right-10px fontawsome_icon"></span></a>-->
+
+    <!--<img align="middle" class="img-responsive img-rounded cl-widget-images"-->
+    <!--src="http://lorempixel.com/400/200/">-->
+    <!--</div>-->
+
+    <small class="form-text">by Mom，1 hour ago</small>
+    <small class="form-text float-right"><i class="icon-location"></i>Seattle</small>
+    <div><span><i class="icon-like fontawsome_icon"></i>爷爷，奶奶赞了一个！</span></div>
+    <!--icon-likefill 是实心的红心-->
+    <!--评论区-->
+    <div>
+      <div class="row">
+        <div class="col-md-12">
+          <strong>grandfather</strong>
+          <span class="float-right">a few seconds ago</span>
+          <p>So gorgeous and remind me of the backyard of Hogwarts！<i class="icon-delete" aria-hidden="true"></i></p>
+        </div>
+        <div class="col-md-12">
+          <strong>mother</strong>
+          <span class="float-right">a few seconds ago</span>
+          <p>So gorgeous and remind me of the backyard of Hogwarts！<i class="icon-delete" aria-hidden="true"></i></p>
+        </div>
+      </div>
+      <div>
+        <div class="input-group">
+          <input type="text" class="form-control">
+          <span class="input-group-btn col-6">
+              <a class="float-right btn btn-primary btn-sm" href="#">Add Comment</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="jga-widget-tool float-right">
+      <a [routerLink]="['./','123']">
+        <span class="fas fa-cog"> </span>
+      </a>
+    </div>
+    <div class="embed-responsive embed-responsive-16by9 youtube-widget">
+      <iframe width="widget.width" height="360" src="https://www.youtube.com/embed/ZwKhufmMxko"
+              frameborder="0" allowfullscreen></iframe>
+    </div>
+    <small class="form-text">by Mom，1 hour ago</small>
+    <small class="form-text float-right"><i class="icon-location"></i>Seattle</small>
+    <div><span><i class="icon-like fontawsome_icon"></i>爷爷，奶奶赞了一个！</span></div>
+    <!--icon-likefill 是实心的红心-->
+    <!--评论区-->
+    <div>
+      <div class="row">
+        <div class="col-md-12">
+          <strong>grandfather</strong>
+          <span class="float-right">a few seconds ago</span>
+          <p>So gorgeous and remind me of the backyard of Hogwarts！<i class="icon-delete" aria-hidden="true"></i></p>
+        </div>
+      </div>
+      <div>
+        <div class="input-group">
+          <input type="text" class="form-control">
+          <span class="input-group-btn col-6">
+              <a class="float-right btn btn-primary btn-sm" href="#">Add Comment</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="null-box"></div>
+<app-footer></app-footer>

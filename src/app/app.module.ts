@@ -14,6 +14,13 @@ import { RecordEditComponent } from './views/record/record-edit/record-edit.comp
 import { FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { HeaderComponent } from './views/common/header/header.component';
+import { FooterComponent } from './views/common/footer/footer.component';
+import { BabyinfoComponent } from './views/info/babyinfo/babyinfo.component';
+import { AdminComponent } from './views/user/admin/admin.component';
+
+import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
+import { FootprintComponent } from './views/info/footprint/footprint.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +30,12 @@ import { NgForm } from '@angular/forms';
     ProfileComponent,
     RecordListComponent,
     RecordNewComponent,
-    RecordEditComponent
+    RecordEditComponent,
+    HeaderComponent,
+    FooterComponent,
+    BabyinfoComponent,
+    AdminComponent,
+    FootprintComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +44,8 @@ import { NgForm } from '@angular/forms';
       apiKey: 'AIzaSyDaeHXUOXFH5oc2l0pqYOT2CeWsjUv_PSU'
     }),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    GooglePlaceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
