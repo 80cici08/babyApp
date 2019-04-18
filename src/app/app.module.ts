@@ -17,10 +17,10 @@ import { NgForm } from '@angular/forms';
 import { HeaderComponent } from './views/common/header/header.component';
 import { FooterComponent } from './views/common/footer/footer.component';
 import { BabyinfoComponent } from './views/info/babyinfo/babyinfo.component';
-import { FollowersinfoComponent } from './views/info/followersinfo/followersinfo.component';
 import { AdminComponent } from './views/user/admin/admin.component';
 
 import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
+import { FootprintComponent } from './views/info/footprint/footprint.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +34,8 @@ import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
     HeaderComponent,
     FooterComponent,
     BabyinfoComponent,
-    FollowersinfoComponent,
-    AdminComponent
+    AdminComponent,
+    FootprintComponent
   ],
   imports: [
     BrowserModule,

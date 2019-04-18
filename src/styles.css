@@ -2,6 +2,10 @@ agm-map {
   height: 300px;
 }
 
+body {
+  padding-bottom: 70px;
+}
+
 input.form-control {
   margin-bottom: 5px;
 }
