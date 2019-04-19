@@ -4,7 +4,7 @@
   <form>
     <div class="form-group" required>
       <label for="image-name">Name</label>
-      <input type="text" class="form-control" id="image-name" placeholder="Name">
+      <input type="text" class="form-control" id="image-name" placeholder="Name" name="name" [(ngModel)]="name">
     </div>
 
     <div class="form-group" required>
@@ -12,31 +12,38 @@
         <label>Type</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="value" id="inlineRadio1" [(ngModel)]="type" value="Image">
+        <input class="form-check-input" type="radio" name="type" id="inlineRadio1" [(ngModel)]="type" value="Image">
         <label class="form-check-label" for="inlineRadio1">Image</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="value" id="inlineRadio2" [(ngModel)]="type" value="Video">
+        <input class="form-check-input" type="radio" name="type" id="inlineRadio2" [(ngModel)]="type" value="Video">
         <label class="form-check-label" for="inlineRadio2">Video</label>
       </div>
     </div>
 
     <div class="form-group">
       <label for="image-URL">URL</label>
-      <input type="text" class="form-control" id="image-URL" placeholder="URL">
+      <input type="text" class="form-control" id="image-URL" placeholder="URL" name="url" [(ngModel)]="url">
     </div>
-    <div *ngIf="type=='Image'" class="form-group">
-      <label for="exampleInputFile">Upload</label>
-      <div class="form-inline">
-        <input type="file" class="form-control" id="exampleInputFile">
-        <a class="btn btn-info ml-2" href="#">Upload Image</a>
-      </div>
+
+    <div class="form-group" *ngIf="type==='Image'">
+      <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
+        <label>Upload</label>
+        <div class="form-inline">
+          <input name="myFile" type="file" class="form-control"/>
+          <input name="widgetId" value="{{recordId}}" style="display: none"/>
+          <input name="userId" value="{{userId}}" style="display: none"/>
+          <button type="submit" class="btn btn-info ml-2">Upload Image</button>
+        </div>
+      </form>
     </div>
+
     <div class="form-group">
       <label>Location</label>
       <!--<input type="text" class="form-control" id="location">-->
       <div>
-        <input class="search form-control" ngx-google-places-autocomplete  #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"/>
+        <input class="search form-control" ngx-google-places-autocomplete #placesRef="ngx-places"
+               (onAddressChange)="handleAddressChange($event)"/>
         <agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="onChoseLocation($event)">
           <agm-marker *ngIf="locationChosen" [latitude]="latitude" [longitude]="longitude"></agm-marker>
         </agm-map>
@@ -44,12 +51,12 @@
     </div>
     <div class="form-group">
       <label for="recordTime">Record time or Upload time</label>
-      <input type="date" class="form-control" id="recordTime">
+      <input type="date" class="form-control" id="recordTime" name="date" [(ngModel)]="date">
     </div>
   </form>
 
-  <a class="btn btn-info mr-2" href="widget-list.html">Save</a>
-  <a class="btn btn-danger" href="widget-list.html">Delete</a>
+  <button class="btn btn-info mr-2" (click)="onEditRecord()">Save</button>
+  <a class="btn btn-danger" [routerLink]="['/record']">Cancle</a>
 </div>
 
 <app-footer></app-footer>

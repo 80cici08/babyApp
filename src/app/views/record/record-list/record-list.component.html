@@ -1,87 +1,52 @@
 <app-header></app-header>
 <!--添加按钮-->
-<div class="plus-box"><a class="navbar-text ml-auto" [routerLink]="['./','new']"><i
-  class="fas fa-plus fontawsome_icon"></i></a></div>
+<!--<div class="plus-box"><a class="navbar-text ml-auto" [routerLink]="['./','new']"><i-->
+  <!--class="fas fa-plus fontawsome_icon"></i></a></div>-->
+
+<div class="plus-box navbar-text mr-auto">
+  <button class="btn btn-info" [routerLink]="['/record', '123']">Add Record</button>
+</div>
 
 <!--Content-->
 <div class="container cl-container-padding">
-  <div>
+  <div *ngFor="let record of records, let i = index">
+    <!--config按钮-->
     <div class="jga-widget-tool float-right">
-      <a [routerLink]="['./','123']">
+      <a [routerLink]="['./',record._id]">
         <span class="fas fa-cog"> </span>
       </a>
     </div>
 
-    <div>
-      <img class="img-responsive img-rounded cl-widget-images" src="http://lorempixel.com/400/200/" width="100%"/>
+    <!--Image or Video-->
+    <div [ngSwitch]="record.type">
+      <div *ngSwitchCase="'Image'">
+        <img class="img-responsive img-rounded cl-widget-images" [src]="record.url" width="100%"/>
+      </div>
+      <div *ngSwitchCase="'Video'">
+        <div class="embed-responsive embed-responsive-16by9 youtube-widget">
+          <iframe width="100%" height="360" [src]='sanitizer.bypassSecurityTrustResourceUrl(record.url)'
+                  frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
-    <!--<div class="babyimg">-->
-    <!--&lt;!&ndash;<a class="edit-btn" href="#">Edit</a>&ndash;&gt;-->
-    <!--<a class="float-right" [routerLink]="['./','123']"><span class="fas fa-cog nudge-right-10px fontawsome_icon"></span></a>-->
 
-    <!--<img align="middle" class="img-responsive img-rounded cl-widget-images"-->
-    <!--src="http://lorempixel.com/400/200/">-->
-    <!--</div>-->
+    <!--点赞区-->
+    <div>
+      <a *ngIf="!record.thumbUps.includes('Mom')" (click)="addThumbUp(i)" class="icon-like fontawsome_icon"></a>
+      <a *ngIf="record.thumbUps.includes('Mom')" (click)="removeThumbUp(i)" class="icon-likefill fontawsome_icon"></a>
+      <span>{{record.thumbUps}} </span>
+      <span>赞了一个</span>
+    </div>
 
-    <small class="form-text">by Mom，1 hour ago</small>
-    <small class="form-text float-right"><i class="icon-location"></i>Seattle</small>
-    <div><span><i class="icon-like fontawsome_icon"></i>爷爷，奶奶赞了一个！</span></div>
-    <!--icon-likefill 是实心的红心-->
     <!--评论区-->
+    <app-record-comment *ngFor="let comment of record.comments" [comment]="comment"></app-record-comment>
+    <!--添加评论-->
     <div>
-      <div class="row">
-        <div class="col-md-12">
-          <strong>grandfather</strong>
-          <span class="float-right">a few seconds ago</span>
-          <p>So gorgeous and remind me of the backyard of Hogwarts！<i class="icon-delete" aria-hidden="true"></i></p>
-        </div>
-        <div class="col-md-12">
-          <strong>mother</strong>
-          <span class="float-right">a few seconds ago</span>
-          <p>So gorgeous and remind me of the backyard of Hogwarts！<i class="icon-delete" aria-hidden="true"></i></p>
-        </div>
-      </div>
-      <div>
-        <div class="input-group">
-          <input type="text" class="form-control">
-          <span class="input-group-btn col-6">
-              <a class="float-right btn btn-primary btn-sm" href="#">Add Comment</a>
+      <div class="input-group">
+        <input type="text" class="form-control">
+        <span class="input-group-btn col-6">
+              <button class="float-right btn btn-primary btn-sm" (click)="onAddComment()">Add Comment</button>
           </span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <div class="jga-widget-tool float-right">
-      <a [routerLink]="['./','123']">
-        <span class="fas fa-cog"> </span>
-      </a>
-    </div>
-    <div class="embed-responsive embed-responsive-16by9 youtube-widget">
-      <iframe width="widget.width" height="360" src="https://www.youtube.com/embed/ZwKhufmMxko"
-              frameborder="0" allowfullscreen></iframe>
-    </div>
-    <small class="form-text">by Mom，1 hour ago</small>
-    <small class="form-text float-right"><i class="icon-location"></i>Seattle</small>
-    <div><span><i class="icon-like fontawsome_icon"></i>爷爷，奶奶赞了一个！</span></div>
-    <!--icon-likefill 是实心的红心-->
-    <!--评论区-->
-    <div>
-      <div class="row">
-        <div class="col-md-12">
-          <strong>grandfather</strong>
-          <span class="float-right">a few seconds ago</span>
-          <p>So gorgeous and remind me of the backyard of Hogwarts！<i class="icon-delete" aria-hidden="true"></i></p>
-        </div>
-      </div>
-      <div>
-        <div class="input-group">
-          <input type="text" class="form-control">
-          <span class="input-group-btn col-6">
-              <a class="float-right btn btn-primary btn-sm" href="#">Add Comment</a>
-          </span>
-        </div>
       </div>
     </div>
   </div>

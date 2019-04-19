@@ -1,3 +1,11 @@
+<!--Header-->
+<div class="navbar navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-text ml-auto" href="/login">Logout</a>
+  </div>
+</div>
+
+<!--content-->
 <div class="col-md-12 search-table-col">
   <!--search-->
   <div class="form-group pull-right col-lg-4"><input type="text" class="search form-control"
@@ -7,31 +15,28 @@
     <table class="table table-bordered table-hover">
       <thead class="bill-header cs">
       <tr class="d-flex">
-        <th id="trs-hd" class="col-1">Username</th>
-        <th id="trs-hd" class="col-1">Relation to Baby</th>
+        <th id="trs-hd" class="col-2">Username</th>
+        <th id="trs-hd" class="col-2">Relation to Baby</th>
         <th id="trs-hd" class="col-2">Latest login time</th>
         <th id="trs-hd" class="col-2">Uploads</th>
         <th id="trs-hd" class="col-2">Comments</th>
-        <th id="trs-hd" class="col-2">ThumbUP</th>
-        <th id="trs-hd" class="col-2">Action</th>
+        <th id="trs-hd" class="col-1">ThumbUP</th>
+        <th id="trs-hd" class="col-1">Action</th>
       </tr>
       </thead>
       <tbody>
       <tr class="warning no-result">
         <td colspan="12"><i class="fa fa-warning"></i>&nbsp; No Result !!!</td>
       </tr>
-      <tr class="d-flex">
-        <td class="col-1">Alice</td>
-        <td class="col-1">Mom</td>
-        <td class="col-2">2019-04-12 23:00:00</td>
-        <td class="col-2">10</td>
-        <td class="col-2">10</td>
-        <td class="col-2">10</td>
-        <td class="col-2">
-          <button class="btn btn-success" style="margin-left: 5px;" type="submit"><i class="fa fa-check"
-                                                                                     style="font-size: 15px;"></i>
-          </button>
-          <button class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash"
+      <tr *ngFor="let user of users" class="d-flex">
+        <td class="col-2">{{user.username}}</td>
+        <td class="col-2">{{user.roleName}}</td>
+        <td class="col-2">{{user.username}}</td>
+        <td class="col-2">{{user.username}}</td>
+        <td class="col-2">{{user.username}}</td>
+        <td class="col-1">{{user.username}}</td>
+        <td class="col-1">
+          <button class="btn btn-danger" style="margin-left: 5px;" (click)="onDeleteUser(user._id)"><i class="fa fa-trash"
                                                                                     style="font-size: 15px;"></i>
           </button>
         </td>
@@ -40,3 +45,5 @@
     </table>
   </div>
 </div>
+
+<app-footer></app-footer>

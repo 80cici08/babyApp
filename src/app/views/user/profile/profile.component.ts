@@ -11,7 +11,7 @@ import {User} from '../../../models/user.model.client';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  user: User;
+  user: any;
   errorFlag: boolean;
   errorMsg = 'Invalid input, please check!';
 
@@ -23,7 +23,9 @@ export class ProfileComponent implements OnInit {
               private router: Router) { this.errorFlag = false;}
 
   ngOnInit() {
-    this.user = this.sharedService.user;
+    // TODO
+    this.user = {_id: '123', username: 'Alice', role: 'Mom', roleName: 'Mom'};
+    // this.user = this.sharedService.user;
   }
 
   onUpdateProfile() {
