@@ -43,7 +43,8 @@ function updateUser(uid, user) {
         username: user.username,
         email: user.email,
         role: user.role,
-        roleName: user.roleName
+        roleName: user.roleName,
+        lastLogin: user.lastLogin
       }
     },
     {new: true});

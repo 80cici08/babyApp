@@ -34,8 +34,7 @@ function updateComment(cid, comment) {
     cid,
     {
       $set: {
-        text: comment.text,
-        thumbUps: comment.thumbUps
+        text: comment.text
       }
     },
     {new: true});

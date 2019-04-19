@@ -7,8 +7,9 @@ const userSchema = new Schema({
   email: String,
   role: String,
   roleName: String,
-  uploads: [{type: mongoose.Schema.Types.ObjectId, ref: 'Record'}],
+  records: [{type: mongoose.Schema.Types.ObjectId, ref: 'Record'}],
   dateCreated: {type: Date, default: Date.now()},
+  lastLogin: String,
   facebook: {
     id: String,
     token: String

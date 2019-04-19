@@ -31,9 +31,11 @@ function updateRecord(rid, record) {
       $set: {
         type: record.type,
         url: record.url,
-        description: record.description,
+        name: record.name,
         longitude: record.longitude,
-        latitude: record.latitude
+        latitude: record.latitude,
+        thumbUps: record.thumbUps,
+        dateCreated: record.dateCreated
       }
     },
     {new: true});
