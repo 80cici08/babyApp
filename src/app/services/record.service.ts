@@ -9,6 +9,7 @@ export class RecordService {
   // the URLs to call the http services API
   private _createRecordUrl = '/api/user/';
   private _findAllRecordsForUserUrl = '/api/user/';
+
   private _findAllRecordsUrl = '/api/records';
   private _findRecordByIdUrl = '/api/record/';
   private _updateRecordUrl = '/api/record/';

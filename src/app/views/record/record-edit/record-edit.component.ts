@@ -3,6 +3,9 @@ import {GooglePlaceDirective} from 'ngx-google-places-autocomplete';
 import {MapsAPILoader} from '@agm/core';
 import {Address} from 'ngx-google-places-autocomplete/objects/address';
 import {environment} from '../../../../environments/environment';
+import {SharedService} from '../../../services/shared.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {RecordService} from '../../../services/record.service';
 
 @Component({
   selector: 'app-record-edit',
@@ -11,35 +14,42 @@ import {environment} from '../../../../environments/environment';
 })
 export class RecordEditComponent implements OnInit {
   baseUrl = environment.baseUrl;
-  userId: String = '123';
-  recordId: String = '123';
-  name: String;
-  type: String = 'Image';
-  url: String;
-  latitude: Number;
-  longitude: Number;
+  record: any;
+  userId: string;
+  recordId: string;
   locationChosen: Boolean;
-  date: String = new Date().toISOString().substr(0, 10);
 
   @ViewChild('places') places: GooglePlaceDirective;
   @ViewChild('search') public searchElement: ElementRef;
 
-  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
+  constructor(private mapsAPILoader: MapsAPILoader,
+              private ngZone: NgZone,
+              private sharedService: SharedService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router,
+              private recordService: RecordService) {
     this.locationChosen = false;
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(data => {
-        this.latitude = data.coords.latitude;
-        this.longitude = data.coords.longitude;
-      }, err => console.log(err));
-    }
+    this.record = {name: '', type: 'Image', url: '', latitude: '', longitude: '', date: ''};
   }
 
+
   ngOnInit() {
+    this.userId = this.sharedService.user._id;
+    this.activatedRoute.params.subscribe(params => {
+      this.recordId = params.rid;
+    });
+    this.recordService.findRecordById(this.recordId)
+      .subscribe(
+        (data: any) => {
+          this.record = data;
+          console.log(this.record);
+        }
+      );
   }
 
   onChoseLocation(event) {
-    this.latitude = event.coords.lat;
-    this.longitude = event.coords.lng;
+    this.record.latitude = event.coords.lat;
+    this.record.longitude = event.coords.lng;
     this.locationChosen = true;
   }
 
@@ -48,17 +58,34 @@ export class RecordEditComponent implements OnInit {
     console.log(address.geometry.location.lat());
     console.log(address.geometry.location.toJSON());
     console.log(address.geometry.viewport.getNorthEast());
-    this.longitude = address.geometry.location.lng();
-    this.latitude = address.geometry.location.lat();
+    this.record.longitude = address.geometry.location.lng();
+    this.record.latitude = address.geometry.location.lat();
     this.locationChosen = true;
   }
 
   onEditRecord() {
-    console.log(this.name);
-    console.log(this.url);
-    console.log(this.type);
-    console.log(this.latitude);
-    console.log(this.date);
+    this.recordService.updateRecord(this.recordId, this.record)
+      .subscribe(
+        data => {
+          this.router.navigate(['/record']);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  onDeleteRecord() {
+    console.log(this.recordId);
+    this.recordService.deleteRecord(this.recordId)
+      .subscribe(
+        data => {
+          this.router.navigate(['/record']);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
 }
