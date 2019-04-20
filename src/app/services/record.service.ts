@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {SharedService} from './shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class RecordService {
   private _updateRecordUrl = '/api/record/';
   private _deleteRecordUrl = '/api/record/';
 
-  constructor(private _http: HttpClient) {
+  constructor(private _http: HttpClient,
+              private _sharedService: SharedService) {
   }
 
   // the http CRUD services
@@ -28,6 +30,7 @@ export class RecordService {
       longitude: record.longitude,
       latitude: record.latitude,
       userId: userId,
+      owner: this._sharedService.user.username,
       thumbUps: [],
       date: record.date
     };
