@@ -43,6 +43,14 @@ export class RecordListComponent implements OnInit {
   }
 
   ngOnInit() {
+    // 1. get current location, used only for onAddRecord Method
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(data => {
+        this.latitude = data.coords.latitude;
+        this.longitude = data.coords.longitude;
+        console.log(this.latitude);
+      }, err => console.log(err));
+    }
   }
 
   addThumbUp(recordIndex) {
@@ -68,22 +76,18 @@ export class RecordListComponent implements OnInit {
   }
 
   onAddRecord() {
-    // 1. get current location
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(data => {
-        this.latitude = data.coords.latitude;
-        this.longitude = data.coords.longitude;
-      }, err => console.log(err));
-    }
     const new_record = {
+      name: " ",
       type: 'Image',
-      longitude: this.longitude,
       latitude: this.latitude,
-      date: new Date().toISOString().substr(0, 10)
+      longitude: this.longitude,
+      date: new Date().toISOString().substr(0, 10),
     };
+    console.log(new_record);
     this.recordService.createRecord(this.sharedService.user._id, new_record)
       .subscribe(
         data => {
+          console.log(data);
           this.router.navigate(['/record', data._id]);
         },
         error => {

@@ -40,6 +40,7 @@ export class RecordEditComponent implements OnInit {
       .subscribe(
         (data: any) => {
           this.record = data;
+          console.log(record);
         }
       );
   }

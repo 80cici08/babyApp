@@ -7,8 +7,8 @@ import {HttpClient} from '@angular/common/http';
 export class RecordService {
 
   // the URLs to call the http services API
-  private _createRecordUrl = '/api/record/';
-  private _findAllRecordsForUserUrl = '/api/record/';
+  private _createRecordUrl = '/api/user/';
+  private _findAllRecordsForUserUrl = '/api/user/';
   private _findRecordByIdUrl = '/api/record/';
   private _updateRecordUrl = '/api/record/';
   private _deleteRecordUrl = '/api/record/';
