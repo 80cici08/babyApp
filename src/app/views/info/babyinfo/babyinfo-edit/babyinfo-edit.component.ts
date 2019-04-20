@@ -15,7 +15,7 @@ export class BabyinfoEditComponent implements OnInit {
   ngOnInit() {
   }
 
-  onUpdateBaby() {
+  onEditBabyInfo() {
     // TODO
     console.log('update baby');
     console.log(this.baby);

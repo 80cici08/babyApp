@@ -2,6 +2,7 @@ import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import {GooglePlaceDirective} from 'ngx-google-places-autocomplete';
 import {MapsAPILoader} from '@agm/core';
 import {Address} from 'ngx-google-places-autocomplete/objects/address';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-record-edit',
@@ -9,6 +10,9 @@ import {Address} from 'ngx-google-places-autocomplete/objects/address';
   styleUrls: ['./record-edit.component.css']
 })
 export class RecordEditComponent implements OnInit {
+  baseUrl = environment.baseUrl;
+  userId: String = '123';
+  recordId: String = '123';
   name: String;
   type: String = 'Image';
   url: String;

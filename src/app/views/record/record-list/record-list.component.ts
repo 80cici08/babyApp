@@ -27,7 +27,10 @@ export class RecordListComponent implements OnInit {
     },
   ];
 
-  constructor(private router: Router,private sanitizer: DomSanitizer) {
+  constructor(private router: Router, private sanitizer: DomSanitizer) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
   }
 
   ngOnInit() {
@@ -35,10 +38,10 @@ export class RecordListComponent implements OnInit {
   }
 
   addThumbUp(recordIndex) {
-    console.log(this.records[recordIndex].thumbUps);
-    this.records[recordIndex].thumbUps.push('Mom');
-    console.log(this.records[recordIndex].thumbUps);
-    this.router.navigate(['/record']);
+    // console.log(this.records[recordIndex].thumbUps);
+    this.records[recordIndex].thumbUps = ['Dad', 'Grandma', 'Mom'];
+    // console.log(this.records[recordIndex].thumbUps);
+    // this.router.navigate(['/record']);
   }
 
   removeThumbUp(recordIndex) {
@@ -48,10 +51,11 @@ export class RecordListComponent implements OnInit {
       this.records[recordIndex].thumbUps.splice(index, 1);
     }
     console.log(this.records[recordIndex].thumbUps);
-    this.router.navigate(['/record']);
+    // this.router.navigate(['/record']);
   }
 
   onAddComment() {
+    // TODO
     console.log("add comment");
   }
 

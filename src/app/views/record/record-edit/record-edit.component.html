@@ -1,10 +1,17 @@
 <app-header></app-header>
 
 <div class="container cl-container-padding">
-  <form>
+  <form (ngSubmit)="onEditRecord()" #f="ngForm">
     <div class="form-group" required>
       <label for="image-name">Name</label>
-      <input type="text" class="form-control" id="image-name" placeholder="Name" name="name" [(ngModel)]="name">
+      <input type="text" class="form-control" id="image-name" placeholder="Name" name="name"
+             [(ngModel)]="name"
+             required
+             [class.is-invalid]="!rname.valid && rname.touched"
+             #rname="ngModel">
+      <small class="form-text text-danger" *ngIf="!rname.valid && rname.touched">
+        Please enter name.
+      </small>
     </div>
 
     <div class="form-group" required>
@@ -53,10 +60,9 @@
       <label for="recordTime">Record time or Upload time</label>
       <input type="date" class="form-control" id="recordTime" name="date" [(ngModel)]="date">
     </div>
+    <button [disabled]="!f.valid" class="btn btn-info mr-2" type="submit">Save</button>
+    <a class="btn btn-danger" [routerLink]="['/record']">Cancle</a>
   </form>
-
-  <button class="btn btn-info mr-2" (click)="onEditRecord()">Save</button>
-  <a class="btn btn-danger" [routerLink]="['/record']">Cancle</a>
 </div>
 
 <app-footer></app-footer>
