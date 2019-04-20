@@ -65,6 +65,9 @@ module.exports = function (app) {
             firstName: names[0],
             lastName: names[1],
             email: profile.emails ? profile.emails[0].value : '',
+            role: '',
+            roleName: '',
+            lastLogin: new Date().toLocaleString(),
             facebook: {
               id: profile.id,
               token: token
@@ -94,6 +97,7 @@ module.exports = function (app) {
   app.post('/api/login', passport.authenticate('local'), (req, res) => {
     const user = req.user;
     console.log('Logged in...');
+    user.save();
     res.json(user);
   });
 
