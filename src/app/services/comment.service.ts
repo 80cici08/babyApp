@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {SharedService} from './shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +15,21 @@ export class CommentService {
   private _updateCommentUrl = '/api/comment/';
   private _deleteCommentUrl = '/api/comment/';
 
-  constructor(private _http: HttpClient) {
+  constructor(private _http: HttpClient,
+              private _sharedService: SharedService) {
   }
 
   // the http CRUD services
 
   createComment(recordId: string, comment: any) {
+    const new_comment = {
+      text: comment,
+      userId: this._sharedService.user._id,
+      recordId: recordId
+    };
     return this._http.post<any>(
       this._createCommentUrl + recordId + '/comment',
-      comment
+      new_comment
     );
   }
 
