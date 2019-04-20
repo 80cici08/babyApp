@@ -11,6 +11,9 @@
             <input class="form-control" type="text" name="username" required ngModel
                    [class.is-invalid]="!username.valid && username.touched"
                    #username="ngModel">
+            <small class="form-text text-danger" *ngIf="!username.valid && username.touched">
+              Please enter username.
+            </small>
           </div>
           <div class="form-group">
             <label class="text-secondary">Password</label>
@@ -18,6 +21,9 @@
                    [class.is-invalid]="!password.valid && password.touched"
                    #password="ngModel">
           </div>
+          <small class="form-text text-danger" *ngIf="!password.valid && password.touched">
+            Please enter password.
+          </small>
 
           <div *ngIf="errorFlag" class="alert alert-danger">{{ errorMsg }}</div>
 

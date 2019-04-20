@@ -6,6 +6,7 @@ body {
   padding-bottom: 70px;
 }
 
+
 input.form-control {
   margin-bottom: 5px;
 }
@@ -27,12 +28,12 @@ input.form-control {
 }
 
 /*.well {*/
-  /*min-height: 20px;*/
-  /*padding: 10px;*/
-  /*margin-bottom: 20px;*/
-  /*background-color: @well-bg;*/
-  /*border: 1px solid @well-border;*/
-  /*border-radius: @border-radius-base;*/
+/*min-height: 20px;*/
+/*padding: 10px;*/
+/*margin-bottom: 20px;*/
+/*background-color: @well-bg;*/
+/*border: 1px solid @well-border;*/
+/*border-radius: @border-radius-base;*/
 /*.box-shadow(inset 0 1 px 1 px rgba(0, 0, 0, .05));*/
 /*}*/
 
