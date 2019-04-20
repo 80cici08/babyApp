@@ -23,15 +23,20 @@ export class ProfileComponent implements OnInit {
               private router: Router) { this.errorFlag = false;}
 
   ngOnInit() {
-    // TODO
-    this.user = {_id: '123', username: 'Alice', role: 'Mom', roleName: 'Mom'};
-    // this.user = this.sharedService.user;
+    this.user = this.sharedService.user;
   }
 
   onUpdateProfile() {
     if (!!this.profileForm.valid) {
-      this.userService.updateUser(this.user._id, this.user);
-      this.router.navigate(['/profile']);
+      this.userService.updateUser(this.user._id, this.user)
+        .subscribe(
+          data => {
+            this.user = data;
+          },
+          error => {
+            this.errorFlag = true;
+          }
+        );
     } else {
       this.errorFlag = true;
     }

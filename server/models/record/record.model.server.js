@@ -9,7 +9,7 @@ recordModel.findRecordById = findRecordById;
 recordModel.updateRecord = updateRecord;
 recordModel.deleteRecord = deleteRecord;
 
-module.exports = recordSchema;
+module.exports = recordModel;
 
 // now implement the functions of recordModel
 function createRecordForUser(record) {

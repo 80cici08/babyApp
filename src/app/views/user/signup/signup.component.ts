@@ -44,24 +44,14 @@ export class SignupComponent implements OnInit {
       this.errorFlag = true;
     } else {
       this.errorFlag = false;
-      this.user = {
-        username: this.username,
-        password: this.password,
-        role: this.role,
-        roleName: this.roleName
-      }
-      this.user = this.userService.createUser(this.user);
-
-      // 这句最后要去掉，在Loggedin中实现
-      // TODO
-      this.sharedService.user = this.user;
-      // this.userService.register(this.user.username, this.user.password)
-      //   .subscribe((data: any) => {
-      //     this.router.navigate(['/profile']);
-      //   }, (error: any) => {
-      //     this.errorMsg = error._body;
-      //   });
-      this.router.navigate(['/record']);
+      this.userService.register(this.username, this.password, this.role, this.roleName)
+        .subscribe((data: any) => {
+          // TODO 这句最后要去掉，在Loggedin中实现
+          this.sharedService.user = data;
+          this.router.navigate(['/record']);
+        }, (error: any) => {
+          this.errorMsg = error._body;
+        });
     }
 
   }

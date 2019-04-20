@@ -78484,185 +78484,40 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 /***/ }),
 
-/***/ "./node_modules/ngx-google-places-autocomplete/ngx-google-places-autocomplete.directive.js":
-/*!*************************************************************************************************!*\
-  !*** ./node_modules/ngx-google-places-autocomplete/ngx-google-places-autocomplete.directive.js ***!
-  \*************************************************************************************************/
-/*! exports provided: GooglePlaceDirective */
+/***/ "./node_modules/rxjs-compat/_esm5/add/operator/map.js":
+/*!************************************************************!*\
+  !*** ./node_modules/rxjs-compat/_esm5/add/operator/map.js ***!
+  \************************************************************/
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GooglePlaceDirective", function() { return GooglePlaceDirective; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _objects_options_options__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./objects/options/options */ "./node_modules/ngx-google-places-autocomplete/objects/options/options.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _operator_map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../operator/map */ "./node_modules/rxjs-compat/_esm5/operator/map.js");
 
 
-var GooglePlaceDirective = (function () {
-    /**
-     * @param {?} el
-     * @param {?} ngZone
-     */
-    function GooglePlaceDirective(el, ngZone) {
-        this.el = el;
-        this.ngZone = ngZone;
-        this.onAddressChange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-    }
-    /**
-     * @return {?}
-     */
-    GooglePlaceDirective.prototype.ngAfterViewInit = function () {
-        if (!this.options)
-            this.options = new _objects_options_options__WEBPACK_IMPORTED_MODULE_1__["Options"]();
-        this.initialize();
-    };
-    /**
-     * @return {?}
-     */
-    GooglePlaceDirective.prototype.isGoogleLibExists = function () {
-        return !(!google || !google.maps || !google.maps.places);
-    };
-    /**
-     * @return {?}
-     */
-    GooglePlaceDirective.prototype.initialize = function () {
-        var _this = this;
-        if (!this.isGoogleLibExists())
-            throw new Error("Google maps library can not be found");
-        this.autocomplete = new google.maps.places.Autocomplete(this.el.nativeElement, this.options);
-        if (!this.autocomplete)
-            throw new Error("Autocomplete is not initialized");
-        if (!this.autocomplete.addListener != null) {
-            this.eventListener = this.autocomplete.addListener('place_changed', function () {
-                _this.handleChangeEvent();
-            });
-        }
-        this.el.nativeElement.addEventListener('keydown', function (event) {
-            var /** @type {?} */ key = event.key.toLowerCase();
-            if (key == 'enter' && event.target === _this.el.nativeElement) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-        });
-        // according to https://gist.github.com/schoenobates/ef578a02ac8ab6726487
-        if (window && window.navigator && window.navigator.userAgent && navigator.userAgent.match(/(iPad|iPhone|iPod)/g)) {
-            setTimeout(function () {
-                var /** @type {?} */ containers = document.getElementsByClassName('pac-container');
-                if (containers) {
-                    var /** @type {?} */ arr = Array.from(containers);
-                    if (arr) {
-                        for (var _i = 0, arr_1 = arr; _i < arr_1.length; _i++) {
-                            var container = arr_1[_i];
-                            if (!container)
-                                continue;
-                            container.addEventListener('touchend', function (e) {
-                                e.stopImmediatePropagation();
-                            });
-                        }
-                    }
-                }
-            }, 500);
-        }
-    };
-    /**
-     * @return {?}
-     */
-    GooglePlaceDirective.prototype.reset = function () {
-        this.autocomplete.setComponentRestrictions(this.options.componentRestrictions);
-        this.autocomplete.setTypes(this.options.types);
-    };
-    /**
-     * @return {?}
-     */
-    GooglePlaceDirective.prototype.handleChangeEvent = function () {
-        var _this = this;
-        this.ngZone.run(function () {
-            _this.place = _this.autocomplete.getPlace();
-            if (_this.place && _this.place.place_id) {
-                _this.onAddressChange.emit(_this.place);
-            }
-        });
-    };
-    GooglePlaceDirective.decorators = [
-        { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"], args: [{
-                    selector: '[ngx-google-places-autocomplete]',
-                    exportAs: 'ngx-places'
-                },] },
-    ];
-    /**
-     * @nocollapse
-     */
-    GooglePlaceDirective.ctorParameters = function () { return [
-        { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"], },
-        { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"], },
-    ]; };
-    GooglePlaceDirective.propDecorators = {
-        'options': [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"], args: ['options',] },],
-        'onAddressChange': [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"] },],
-    };
-    return GooglePlaceDirective;
-}());
-
-function GooglePlaceDirective_tsickle_Closure_declarations() {
-    /** @type {?} */
-    GooglePlaceDirective.decorators;
-    /**
-     * @nocollapse
-     * @type {?}
-     */
-    GooglePlaceDirective.ctorParameters;
-    /** @type {?} */
-    GooglePlaceDirective.propDecorators;
-    /** @type {?} */
-    GooglePlaceDirective.prototype.options;
-    /** @type {?} */
-    GooglePlaceDirective.prototype.onAddressChange;
-    /** @type {?} */
-    GooglePlaceDirective.prototype.autocomplete;
-    /** @type {?} */
-    GooglePlaceDirective.prototype.eventListener;
-    /** @type {?} */
-    GooglePlaceDirective.prototype.place;
-    /** @type {?} */
-    GooglePlaceDirective.prototype.el;
-    /** @type {?} */
-    GooglePlaceDirective.prototype.ngZone;
-}
-//# sourceMappingURL=ngx-google-places-autocomplete.directive.js.map
+rxjs__WEBPACK_IMPORTED_MODULE_0__["Observable"].prototype.map = _operator_map__WEBPACK_IMPORTED_MODULE_1__["map"];
+//# sourceMappingURL=map.js.map
 
 /***/ }),
 
-/***/ "./node_modules/ngx-google-places-autocomplete/objects/options/options.js":
-/*!********************************************************************************!*\
-  !*** ./node_modules/ngx-google-places-autocomplete/objects/options/options.js ***!
-  \********************************************************************************/
-/*! exports provided: Options */
+/***/ "./node_modules/rxjs-compat/_esm5/operator/map.js":
+/*!********************************************************!*\
+  !*** ./node_modules/rxjs-compat/_esm5/operator/map.js ***!
+  \********************************************************/
+/*! exports provided: map */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Options", function() { return Options; });
-var Options = (function () {
-    /**
-     * @param {?=} opt
-     */
-    function Options(opt) {
-        if (!opt)
-            return;
-        Object.assign(this, opt);
-    }
-    return Options;
-}());
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "map", function() { return map; });
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 
-function Options_tsickle_Closure_declarations() {
-    /** @type {?} */
-    Options.prototype.bounds;
-    /** @type {?} */
-    Options.prototype.componentRestrictions;
-    /** @type {?} */
-    Options.prototype.types;
+function map(project, thisArg) {
+    return Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(project, thisArg)(this);
 }
-//# sourceMappingURL=options.js.map
+//# sourceMappingURL=map.js.map
 
 /***/ }),
 

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Router} from '@angular/router';
+import {RecordService} from '../../../services/record.service';
+import {SharedService} from '../../../services/shared.service';
 
 @Component({
   selector: 'app-record-list',
@@ -8,6 +10,10 @@ import {Router} from '@angular/router';
   styleUrls: ['./record-list.component.css']
 })
 export class RecordListComponent implements OnInit {
+  //used only for onAddRecord Method
+  latitude: Number;
+  longitude: Number;
+
   records: any = [
     {
       _id: '123', name: 'baby1', type: 'Image', url: 'http://lorempixel.com/400/200/',
@@ -27,14 +33,16 @@ export class RecordListComponent implements OnInit {
     },
   ];
 
-  constructor(private router: Router, private sanitizer: DomSanitizer) {
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    };
+  constructor(private router: Router,
+              public sanitizer: DomSanitizer,
+              private recordService: RecordService,
+              private sharedService: SharedService) {
+    // this.router.routeReuseStrategy.shouldReuseRoute = function () {
+    //   return false;
+    // };
   }
 
   ngOnInit() {
-    console.log('init');
   }
 
   addThumbUp(recordIndex) {
@@ -56,7 +64,32 @@ export class RecordListComponent implements OnInit {
 
   onAddComment() {
     // TODO
-    console.log("add comment");
+    console.log('add comment');
+  }
+
+  onAddRecord() {
+    // 1. get current location
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(data => {
+        this.latitude = data.coords.latitude;
+        this.longitude = data.coords.longitude;
+      }, err => console.log(err));
+    }
+    const new_record = {
+      type: 'Image',
+      longitude: this.longitude,
+      latitude: this.latitude,
+      date: new Date().toISOString().substr(0, 10)
+    };
+    this.recordService.createRecord(this.sharedService.user._id, new_record)
+      .subscribe(
+        data => {
+          this.router.navigate(['/record', data._id]);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
 
