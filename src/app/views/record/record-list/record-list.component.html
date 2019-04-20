@@ -32,23 +32,14 @@
 
     <!--点赞区-->
     <div>
-      <a *ngIf="!record.thumbUps.includes('Mom')" (click)="addThumbUp(i)" class="icon-like fontawsome_icon"></a>
-      <a *ngIf="record.thumbUps.includes('Mom')" (click)="removeThumbUp(i)" class="icon-likefill fontawsome_icon"></a>
+      <a *ngIf="record.thumbUps.length === 0 || !record.thumbUps.includes(username)" (click)="addThumbUp(i)" class="icon-like fontawsome_icon"></a>
+      <a *ngIf="record.thumbUps.length !== 0 && record.thumbUps.includes(username)" (click)="removeThumbUp(i)" class="icon-likefill fontawsome_icon"></a>
       <span>{{record.thumbUps}} </span>
-      <span>赞了一个</span>
+      <span *ngIf="record.thumbUps.length!=0">赞了一个</span>
     </div>
 
     <!--评论区-->
-    <app-record-comment *ngFor="let comment of record.comments" [comment]="comment"></app-record-comment>
-    <!--添加评论-->
-    <div>
-      <div class="input-group">
-        <input type="text" class="form-control">
-        <span class="input-group-btn col-6">
-              <button class="float-right btn btn-primary btn-sm" (click)="onAddComment()">Add Comment</button>
-          </span>
-      </div>
-    </div>
+    <!--<app-record-comment  [comments]="record.comments" [recordId]="record._id"></app-record-comment>-->
   </div>
 </div>
 

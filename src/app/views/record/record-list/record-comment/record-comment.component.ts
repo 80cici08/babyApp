@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {SharedService} from '../../../../services/shared.service';
 
 @Component({
   selector: 'app-record-comment',
@@ -6,9 +7,9 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./record-comment.component.css']
 })
 export class RecordCommentComponent implements OnInit {
-  @Input() comment: { _id: string, username: string, text: string };
+  @Input() comments: [{ _id: String, username: string, text: string, recordId: string}];
 
-  constructor() {
+  constructor(private sharedService: SharedService) {
   }
 
   ngOnInit() {
@@ -17,4 +18,5 @@ export class RecordCommentComponent implements OnInit {
   onDeleteComment() {
     console.log('delete comment...');
   }
+
 }
