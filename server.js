@@ -17,7 +17,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Point static path to dist -- For building -- REMOVE
-app.use(express.static(path.join(__dirname, "dist/MusicApp")));
+app.use(express.static(path.join(__dirname, "dist/BabyApp")));
 // user body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -40,7 +40,7 @@ const dbConnection = require('./server/models/models.server');
 
 // for other calls, render the index page in dist folder
 app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'dist/MusicApp/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/BabyApp/index.html'));
 });
 
 // set port

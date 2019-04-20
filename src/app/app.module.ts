@@ -23,6 +23,7 @@ import { FootprintComponent } from './views/info/footprint/footprint.component';
 import { RecordCommentComponent } from './views/record/record-list/record-comment/record-comment.component';
 import { BabyinfoNewComponent } from './views/info/babyinfo/babyinfo-new/babyinfo-new.component';
 import { BabyinfoEditComponent } from './views/info/babyinfo/babyinfo-edit/babyinfo-edit.component';
+import { RecordCommentsComponent } from './views/record/record-list/record-comments/record-comments.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { BabyinfoEditComponent } from './views/info/babyinfo/babyinfo-edit/babyi
     FootprintComponent,
     RecordCommentComponent,
     BabyinfoNewComponent,
-    BabyinfoEditComponent
+    BabyinfoEditComponent,
+    RecordCommentsComponent
   ],
   imports: [
     BrowserModule,
