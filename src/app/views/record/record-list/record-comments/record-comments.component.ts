@@ -39,6 +39,7 @@ export class RecordCommentsComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
+          this.text = '';
           this.comment_ids.push(data._id);
         },
         error => {
