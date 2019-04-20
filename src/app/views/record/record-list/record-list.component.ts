@@ -54,18 +54,20 @@ export class RecordListComponent implements OnInit {
 
   addThumbUp(recordIndex) {
     // console.log(this.records[recordIndex].thumbUps);
-    this.records[recordIndex].thumbUps = ['Dad', 'Grandma', 'Mom'];
+    const new_thumbUps = [...this.records[recordIndex].thumbUps];
+    new_thumbUps.push('Mom');
+    this.records[recordIndex].thumbUps = new_thumbUps;
     // console.log(this.records[recordIndex].thumbUps);
     // this.router.navigate(['/record']);
   }
 
   removeThumbUp(recordIndex) {
-    console.log(this.records[recordIndex].thumbUps);
-    const index = this.records[recordIndex].thumbUps.indexOf('Mom');
+    const new_thumbUps = [...this.records[recordIndex].thumbUps];
+    const index = new_thumbUps.indexOf('Mom');
     if (index !== -1) {
-      this.records[recordIndex].thumbUps.splice(index, 1);
+      new_thumbUps.splice(index, 1);
     }
-    console.log(this.records[recordIndex].thumbUps);
+    this.records[recordIndex].thumbUps = new_thumbUps;
     // this.router.navigate(['/record']);
   }
 
@@ -75,7 +77,6 @@ export class RecordListComponent implements OnInit {
   }
 
   onAddRecord() {
-    // TODO 需要把name置为空
     const new_record = {
       'type': 'Image',
       'latitude': this.latitude,
