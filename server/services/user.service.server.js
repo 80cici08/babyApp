@@ -1,3 +1,8 @@
+const express = require('express');
+const path = require('path');
+const multer = require('multer');
+const ejs = require('ejs');
+
 module.exports = function (app) {
 
   // get hold of the user model, record model and comment model
@@ -268,6 +273,80 @@ module.exports = function (app) {
         res.status(400).send(err);
       }
     );
+  });
+
+  // upload the image by user
+  // before start, use the public assets folder to hold uploads
+  console.log('Public assets folder: ');
+  console.log(path.join(__dirname, '/../../src/assets/uploads'));
+  app.use(express.static(path.join(__dirname, '/../../src/assets/uploads')));
+
+  // first, set up storage engine
+  const storage = multer.diskStorage({
+    destination: './src/assets/uploads',
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now());
+    }
+  });
+
+  // init upload
+  const upload = multer({
+    storage: storage,
+    limits: {fileSize: 1000000000},
+    fileFilter: function (req, file, cb) {
+      checkFileType(file, cb);
+    }
+  }).single('recordFile');
+
+  // check file type helper
+  function checkFileType(file, cb) {
+    // allowed extension
+    const fileTypes = /jpeg|png|gif|jpg|tiff|avi|mp4|mov|rmvb/;
+    // first check extension name
+    const extnameValid = fileTypes.test(path.extname(file.originalname).toLowerCase());
+    // second, check mime
+    const mimetypeValid = fileTypes.test(file.mimetype);
+    // then check if both are true
+    if (extnameValid && mimetypeValid) {
+      return cb(null, true);
+    } else {
+      // cb({
+      //   message: 'Error: Images Only!'
+      // });
+      cb('Error: Images and Videos Only!');
+    }
+  }
+
+  // make post request
+  app.post('/api/upload', function (req, res) {
+    // call the upload
+    upload(req, res, (err) => {
+      // get the const variables
+      const userId = req.body.userId;
+      const recordId = req.body.recordId;
+      if (err) {
+        console.log(err.message);
+        res.status(400).send(err.message);
+      } else {
+        console.log(req.body);
+        console.log(req.file);
+        if (req.file === undefined) {
+          console.log('No file selected!');
+          // res.status(400).send('No file selected!');
+        } else {
+          // res.status(200).send(req.file.path);
+          recordModel.findRecordById(recordId).exec((findRecordError, record) => {
+            if (findRecordError) {
+              console.log('Error finding the record when upload a new media file! recordId: ' + recordId);
+              res.status(400).send(findRecordError);
+            } else {
+              record.url = `/${req.file.filename}`;
+              record.save();
+            }
+          });
+        }
+      }
+    })
   });
 
 };
