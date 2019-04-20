@@ -1,12 +1,14 @@
 <div>
 
-  <div *ngFor="let comment of comments" class="row">
-    <app-record-comment [commentId]="comment"></app-record-comment>
+  <div *ngFor="let comment_id of comment_ids" class="row">
+    <app-record-comment [commentId]="comment_id"
+                        (deleteCommentEvent)="this.onDeleteCommentEvent($event)"
+                        [user]="this._user"></app-record-comment>
   </div>
   <!--添加评论-->
   <div>
     <div class="input-group">
-      <input type="text" class="form-control" name="text" [(ngModel)]="text">
+      <input type="text" class="form-control" name="text" [(ngModel)]="text" placeholder="Please enter your comment">
       <span class="input-group-btn col-6">
               <button class="float-right btn btn-primary btn-sm" (click)="onAddComment()">Add Comment</button>
           </span>

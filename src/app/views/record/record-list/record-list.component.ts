@@ -11,7 +11,7 @@ import {CommentService} from '../../../services/comment.service';
   styleUrls: ['./record-list.component.css']
 })
 export class RecordListComponent implements OnInit {
-  //used only for onAddRecord Method
+  // used only for onAddRecord Method
   latitude: Number;
   longitude: Number;
   records: any;
@@ -66,7 +66,7 @@ export class RecordListComponent implements OnInit {
   }
 
   addThumbUp(recordIndex) {
-    let new_thumbUps  = [...this.records[recordIndex].thumbUps];
+    let new_thumbUps = [...this.records[recordIndex].thumbUps];
     new_thumbUps.push(this.username);
     const recordId = this.records[recordIndex]._id;
     this.records[recordIndex].thumbUps = new_thumbUps;

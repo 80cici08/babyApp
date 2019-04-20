@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SharedService} from '../../../../services/shared.service';
 import {CommentService} from '../../../../services/comment.service';
 
@@ -10,6 +10,8 @@ import {CommentService} from '../../../../services/comment.service';
 export class RecordCommentComponent implements OnInit {
   // @Input() comment: { _id: string, username: string, text: string, recordId: string};
   @Input() commentId: string;
+  @Input() user: any;
+  @Output() deleteCommentEvent = new EventEmitter();
   comment: any;
 
   constructor(private sharedService: SharedService,
@@ -31,6 +33,7 @@ export class RecordCommentComponent implements OnInit {
   }
 
   onDeleteComment() {
+    this.deleteCommentEvent.emit(this.commentId);
     this.commentService.deleteComment(this.comment._id)
       .subscribe(
         data => {

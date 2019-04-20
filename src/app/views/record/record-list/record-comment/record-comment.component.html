@@ -1,4 +1,5 @@
 <div class="col-md-12">
-  <strong>{{comment.userId}}</strong>
-  <p>{{comment.text}}<i class="icon-delete" aria-hidden="true" (click)="onDeleteComment()" style="cursor: pointer"></i></p>
+  <strong>{{this.user.username}}</strong>
+  <p>{{comment.text}}<i class="icon-delete" aria-hidden="true" (click)="onDeleteComment()" style="cursor: pointer"></i>
+  </p>
 </div>
