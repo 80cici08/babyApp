@@ -11,7 +11,36 @@ a {
   color: inherit;
 }
 
-nav ul {
+/*#topheader .navbar-nav li.active > a{*/
+  /*color: #dc3545;*/
+/*}*/
+
+/*#topheader .navbar-link li.active > a{*/
+  /*color: green;*/
+/*}*/
+
+/*.navbar-nav li.active {*/
+  /*color: yellow;*/
+/*}*/
+/*.navbar-light .navbar-nav .nav-link {*/
+  /*color: #dc3545;*/
+/*}*/
+
+/*.navbar-nav .active>.nav-link, .nav-link.active {*/
+  /*color: #dc3545;*/
+/*}*/
+
+/*.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {*/
+  /*color: #dc3545;*/
+/*}*/
+
+.my-navbar .nav-item.active .nav-link
+.my-navbar .nav-item:hover .nav-link {
+  color: red;
+}
+
+
+nav ul{
   background: #f8f9fa;
   overflow: hidden;
   color: white;
@@ -31,7 +60,11 @@ nav ul li {
 }
 
 nav ul li:hover {
-  background: #405d6a;
+  background: lightblue;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #17a2b8;
 }
 
 .handle {

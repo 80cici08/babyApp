@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
+  users: any = [{_id: '123', username: 'Alice', role: 'Mom', roleName: 'Mom'},
+    {_id: '123', username: 'Tom', role: 'Dad', roleName: 'Dad'}]
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onDeleteUser(userId) {
+    // TODO
+    console.log('delete user...');
   }
 
 }

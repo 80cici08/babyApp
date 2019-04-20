@@ -8,7 +8,6 @@ import { LoginComponent } from './views/user/login/login.component';
 import { SignupComponent } from './views/user/signup/signup.component';
 import { ProfileComponent } from './views/user/profile/profile.component';
 import { RecordListComponent } from './views/record/record-list/record-list.component';
-import { RecordNewComponent } from './views/record/record-new/record-new.component';
 import { RecordEditComponent } from './views/record/record-edit/record-edit.component';
 
 import { FormsModule} from '@angular/forms';
@@ -21,6 +20,9 @@ import { AdminComponent } from './views/user/admin/admin.component';
 
 import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
 import { FootprintComponent } from './views/info/footprint/footprint.component';
+import { RecordCommentComponent } from './views/record/record-list/record-comment/record-comment.component';
+import { BabyinfoNewComponent } from './views/info/babyinfo/babyinfo-new/babyinfo-new.component';
+import { BabyinfoEditComponent } from './views/info/babyinfo/babyinfo-edit/babyinfo-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +31,15 @@ import { FootprintComponent } from './views/info/footprint/footprint.component';
     SignupComponent,
     ProfileComponent,
     RecordListComponent,
-    RecordNewComponent,
     RecordEditComponent,
     HeaderComponent,
     FooterComponent,
     BabyinfoComponent,
     AdminComponent,
-    FootprintComponent
+    FootprintComponent,
+    RecordCommentComponent,
+    BabyinfoNewComponent,
+    BabyinfoEditComponent
   ],
   imports: [
     BrowserModule,
