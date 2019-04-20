@@ -5,6 +5,7 @@ const recordModel = mongoose.model('Record', recordSchema, 'Records');
 
 recordModel.createRecordForUser = createRecordForUser;
 recordModel.findAllRecordsForUser = findAllRecordsForUser;
+recordModel.findAllRecords = findAllRecords;
 recordModel.findRecordById = findRecordById;
 recordModel.updateRecord = updateRecord;
 recordModel.deleteRecord = deleteRecord;
@@ -18,6 +19,10 @@ function createRecordForUser(record) {
 
 function findAllRecordsForUser(uid) {
   return recordModel.find({userId: uid});
+}
+
+function findAllRecords() {
+  return recordModel.find({});
 }
 
 function findRecordById(rid) {

@@ -9,6 +9,7 @@ export class RecordService {
   // the URLs to call the http services API
   private _createRecordUrl = '/api/user/';
   private _findAllRecordsForUserUrl = '/api/user/';
+  private _findAllRecordsUrl = '/api/records';
   private _findRecordByIdUrl = '/api/record/';
   private _updateRecordUrl = '/api/record/';
   private _deleteRecordUrl = '/api/record/';
@@ -34,6 +35,10 @@ export class RecordService {
 
   findRecordsByUser(userId: string) {
     return this._http.get<any>(this._findAllRecordsForUserUrl + userId + '/record');
+  }
+
+  findAllRecords() {
+    return this._http.get<any>(this._findAllRecordsUrl);
   }
 
   findRecordById(recordId: string) {
