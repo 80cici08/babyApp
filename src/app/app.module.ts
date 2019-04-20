@@ -25,6 +25,7 @@ import { BabyinfoNewComponent } from './views/info/babyinfo/babyinfo-new/babyinf
 import { BabyinfoEditComponent } from './views/info/babyinfo/babyinfo-edit/babyinfo-edit.component';
 import { RecordCommentsComponent } from './views/record/record-list/record-comments/record-comments.component';
 import { FileInputValidator } from './shared/file-input.validator';
+import {AuthGuard} from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { FileInputValidator } from './shared/file-input.validator';
     HttpClientModule,
     GooglePlaceModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
