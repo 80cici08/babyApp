@@ -25,6 +25,7 @@ export class RecordService {
       name: record.name,
       longitude: record.longitude,
       latitude: record.latitude,
+      userId: userId,
       thumbUps: [],
       dateCreated: record.dateCreated
     };
