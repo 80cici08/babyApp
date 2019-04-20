@@ -10,7 +10,7 @@ const recordSchema = new Schema({
   userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
   thumbUps: [String],
-  dateCreated: String
+  date: String
 });
 
 module.exports = recordSchema;

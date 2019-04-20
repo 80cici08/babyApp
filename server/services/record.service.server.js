@@ -7,6 +7,20 @@ module.exports = function (app) {
 
   // the http CRUD operations on records
 
+  // find all records
+  app.get('/api/records', function (req, res) {
+    console.log("Getting all the records...");
+    recordModel.findAllRecords().exec((err, records) => {
+      if (err) {
+        console.log('Error getting all the records!');
+        res.status(400).send(err);
+      } else {
+        console.log('Finished getting all the records.');
+        res.status(200).json(records);
+      }
+    });
+  });
+
   // find all records for user with given userId
   app.get("/api/user/:uid/record", function (req, res) {
     const userId = req.params.uid;
