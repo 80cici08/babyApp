@@ -31,7 +31,10 @@ nav ul li {
 }
 
 nav ul li:hover {
-  background: #405d6a;
+  background: lightblue;
+}
+.navbar-light .navbar-nav .nav-link {
+  color: #17a2b8;
 }
 
 .handle {
