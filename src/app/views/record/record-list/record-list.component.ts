@@ -73,7 +73,7 @@ export class RecordListComponent implements OnInit {
     this.recordService.updateRecord(recordId, this.records[recordIndex])
       .subscribe(
         (data: any[]) => {
-          this.records = data;
+          this.records[recordIndex] = data;
           console.log(data);
         }
       );
@@ -92,7 +92,7 @@ export class RecordListComponent implements OnInit {
       .subscribe(
         (data: any[]) => {
           console.log(data);
-          this.records = data;
+          this.records[recordIndex] = data;
         }
       );
   }

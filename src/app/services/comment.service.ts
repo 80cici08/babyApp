@@ -23,7 +23,7 @@ export class CommentService {
 
   createComment(recordId: string, comment: any) {
     const new_comment = {
-      text: comment,
+      text: comment.text,
       userId: this._sharedService.user._id,
       recordId: recordId
     };

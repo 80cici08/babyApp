@@ -1,0 +1,15 @@
+<div>
+
+  <div *ngFor="let comment of comments" class="row">
+    <app-record-comment [commentId]="comment"></app-record-comment>
+  </div>
+  <!--添加评论-->
+  <div>
+    <div class="input-group">
+      <input type="text" class="form-control" name="text" [(ngModel)]="text">
+      <span class="input-group-btn col-6">
+              <button class="float-right btn btn-primary btn-sm" (click)="onAddComment()">Add Comment</button>
+          </span>
+    </div>
+  </div>
+</div>
