@@ -48,7 +48,6 @@ export class RecordListComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(data => {
         this.latitude = data.coords.latitude;
         this.longitude = data.coords.longitude;
-        console.log(this.latitude);
       }, err => console.log(err));
     }
   }
@@ -76,14 +75,13 @@ export class RecordListComponent implements OnInit {
   }
 
   onAddRecord() {
+    // TODO 需要把name置为空
     const new_record = {
-      name: " ",
-      type: 'Image',
-      latitude: this.latitude,
-      longitude: this.longitude,
-      date: new Date().toISOString().substr(0, 10),
+      'type': 'Image',
+      'latitude': this.latitude,
+      'longitude': this.longitude,
+      'date': new Date().toISOString().substr(0, 10),
     };
-    console.log(new_record);
     this.recordService.createRecord(this.sharedService.user._id, new_record)
       .subscribe(
         data => {

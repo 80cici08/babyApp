@@ -33,7 +33,7 @@
       <input type="text" class="form-control" id="image-URL" placeholder="URL" name="url" [(ngModel)]="record.url">
     </div>
 
-    <div class="form-group" *ngIf="type==='Image'">
+    <div class="form-group" *ngIf="record.type==='Image'">
       <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
         <label>Upload</label>
         <div class="form-inline">

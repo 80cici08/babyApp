@@ -29,7 +29,9 @@ export class RecordEditComponent implements OnInit {
               private router: Router,
               private recordService: RecordService) {
     this.locationChosen = false;
+    this.record = {name: '', type: 'Image', url: '', latitude: '', longitude: '', date: ''};
   }
+
 
   ngOnInit() {
     this.userId = this.sharedService.user._id;
@@ -40,7 +42,7 @@ export class RecordEditComponent implements OnInit {
       .subscribe(
         (data: any) => {
           this.record = data;
-          console.log(record);
+          console.log(this.record);
         }
       );
   }
@@ -74,6 +76,7 @@ export class RecordEditComponent implements OnInit {
   }
 
   onDeleteRecord() {
+    console.log(this.recordId);
     this.recordService.deleteRecord(this.recordId)
       .subscribe(
         data => {
