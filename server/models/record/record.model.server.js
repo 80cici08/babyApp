@@ -35,7 +35,7 @@ function updateRecord(rid, record) {
         longitude: record.longitude,
         latitude: record.latitude,
         thumbUps: record.thumbUps,
-        dateCreated: record.dateCreated
+        date: record.date
       }
     },
     {new: true});

@@ -10,7 +10,7 @@ export class CommentService {
   // the http calls URLs
   private _createCommentUrl = '/api/record/';
   private _findAllCommentsForRecordUrl = '/api/record/';
-  private _findAllCommentsForUserUrl = '/api/record/';
+  private _findAllCommentsForUserUrl = '/api/user/';
   private _findCommentByIdUrl = '/api/comment/';
   private _updateCommentUrl = '/api/comment/';
   private _deleteCommentUrl = '/api/comment/';

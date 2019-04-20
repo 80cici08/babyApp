@@ -10,8 +10,8 @@ import {SharedService} from '../../../services/shared.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username: String;
-  password: String;
+  username: string;
+  password: string;
 
   errorFlag: boolean;
   errorMsg = 'Invalid username or password !';
