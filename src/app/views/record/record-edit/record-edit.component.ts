@@ -7,12 +7,19 @@ import {SharedService} from '../../../services/shared.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RecordService} from '../../../services/record.service';
 
+// import {NgForm} from '@angular/forms';
+
 @Component({
   selector: 'app-record-edit',
   templateUrl: './record-edit.component.html',
   styleUrls: ['./record-edit.component.css']
 })
 export class RecordEditComponent implements OnInit {
+
+  // record file upload limiter
+  private _maxSize = 1000000000; // size limit 1000MB
+  private _allowedType = /jpeg|png|gif|jpg|tiff|avi|mp4|mov|rmvb/; // allowed image and video types
+
   baseUrl = environment.baseUrl;
   record: any;
   userId: string;
@@ -21,6 +28,8 @@ export class RecordEditComponent implements OnInit {
 
   @ViewChild('places') places: GooglePlaceDirective;
   @ViewChild('search') public searchElement: ElementRef;
+
+  // @ViewChild('uploadRecordForm') uploadRecordForm: NgForm;
 
   constructor(private mapsAPILoader: MapsAPILoader,
               private ngZone: NgZone,
@@ -87,5 +96,16 @@ export class RecordEditComponent implements OnInit {
         }
       );
   }
+
+  // onUploadRecordFile() {
+  //   this.recordService.findRecordById(this.recordId).subscribe(
+  //     r => {
+  //       this.record = r;
+  //     },
+  //     error => {
+  //       console.log('Error finding the record after uploading a record!');
+  //     }
+  //   );
+  // }
 
 }

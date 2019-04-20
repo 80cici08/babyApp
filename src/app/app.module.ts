@@ -24,6 +24,7 @@ import { RecordCommentComponent } from './views/record/record-list/record-commen
 import { BabyinfoNewComponent } from './views/info/babyinfo/babyinfo-new/babyinfo-new.component';
 import { BabyinfoEditComponent } from './views/info/babyinfo/babyinfo-edit/babyinfo-edit.component';
 import { RecordCommentsComponent } from './views/record/record-list/record-comments/record-comments.component';
+import { FileInputValidator } from './shared/file-input.validator';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { RecordCommentsComponent } from './views/record/record-list/record-comme
     RecordCommentComponent,
     BabyinfoNewComponent,
     BabyinfoEditComponent,
-    RecordCommentsComponent
+    RecordCommentsComponent,
+    FileInputValidator
   ],
   imports: [
     BrowserModule,

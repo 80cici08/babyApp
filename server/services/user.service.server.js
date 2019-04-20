@@ -333,6 +333,7 @@ module.exports = function (app) {
       // get the const variables
       const userId = req.body.userId;
       const recordId = req.body.recordId;
+      const recordListUrl = `/record`;
       if (err) {
         console.log(err.message);
         res.status(400).send(err.message);
@@ -351,6 +352,7 @@ module.exports = function (app) {
             } else {
               record.url = `/${req.file.filename}`;
               record.save();
+              res.redirect(recordListUrl);
             }
           });
         }
