@@ -1,5 +1,8 @@
 <div class="col-md-12">
-  <strong>{{this.commentUsername}}</strong>
+  <div class="form-inline">
+    <div><strong>{{this.commentUsername}}</strong></div>
+    <div class="ml-auto"><span>{{comment.dateCreated.substr(0, 10)}}</span></div>
+  </div>
   <p>{{comment.text}}<i *ngIf="this.currentUser._id===this.comment.userId" class="icon-delete" aria-hidden="true" (click)="onDeleteComment()" style="cursor: pointer"></i>
   </p>
 </div>

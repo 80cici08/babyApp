@@ -1,9 +1,9 @@
 <app-header></app-header>
 <!--添加按钮-->
 <!--<div class="plus-box"><a class="navbar-text ml-auto" [routerLink]="['./','new']"><i-->
-  <!--class="fas fa-plus fontawsome_icon"></i></a></div>-->
+<!--class="fas fa-plus fontawsome_icon"></i></a></div>-->
 
-<div class="plus-box navbar-text mr-auto">
+<div *ngIf="user.role!=='Other'" class="plus-box navbar-text mr-auto">
   <button class="btn btn-info" (click)="onAddRecord()">Add Record</button>
 </div>
 
@@ -11,7 +11,7 @@
 <div class="container cl-container-padding">
   <div *ngFor="let record of records, let i = index">
     <!--config按钮-->
-    <div class="jga-widget-tool float-right">
+    <div *ngIf="user.username===record.owner" class="jga-widget-tool float-right">
       <a [routerLink]="['./',record._id]">
         <span class="fas fa-cog"> </span>
       </a>
@@ -31,15 +31,22 @@
     </div>
 
     <!--点赞区-->
-    <div>
-      <a *ngIf="record.thumbUps.length === 0 || !record.thumbUps.includes(username)" (click)="addThumbUp(i)" class="icon-like fontawsome_icon"></a>
-      <a *ngIf="record.thumbUps.length !== 0 && record.thumbUps.includes(username)" (click)="removeThumbUp(i)" class="icon-likefill fontawsome_icon"></a>
-      <span>{{record.thumbUps}} </span>
-      <span *ngIf="record.thumbUps.length!=0">赞了一个</span>
+    <div class="form-inline">
+      <h5 class="form-text">{{record.name}}</h5>
+      <h6 class="form-text">&nbsp;(by {{record.owner}})</h6>
+      <div class="ml-auto">
+        <a *ngIf="record.thumbUps.length === 0 || !record.thumbUps.includes(user.username)" (click)="addThumbUp(i)"
+           class="icon-like fontawsome_icon"></a>
+        <a *ngIf="record.thumbUps.length !== 0 && record.thumbUps.includes(user.username)" (click)="removeThumbUp(i)"
+           class="icon-likefill fontawsome_icon"></a>
+        <span>{{record.thumbUps}} </span>
+        <span *ngIf="record.thumbUps.length!=0">赞了一个</span>
+      </div>
     </div>
 
+
     <!--评论区-->
-    <app-record-comments  [comment_ids]="record.comments" [record]="record"></app-record-comments>
+    <app-record-comments [comment_ids]="record.comments" [record]="record"></app-record-comments>
   </div>
 </div>
 

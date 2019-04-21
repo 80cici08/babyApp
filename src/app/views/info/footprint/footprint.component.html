@@ -3,8 +3,7 @@
   <div class="form-group">
     <div>
       <agm-map [latitude]="latitude" [longitude]="longitude">
-        <agm-marker [latitude]="47.5390978" [longitude]="-112.02743450000001"></agm-marker>
-        <agm-marker [latitude]="47.5390978" [longitude]="-122.02743450000001"></agm-marker>
+        <agm-marker *ngFor="let record of records" [latitude]=record.latitude [longitude]=record.longitude></agm-marker>
       </agm-map>
     </div>
   </div>
