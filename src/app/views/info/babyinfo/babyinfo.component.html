@@ -1,9 +1,23 @@
 <app-header></app-header>
 <div class="col-md-12 search-table-col container cl-container-padding">
   <span class="counter pull-right"></span>
-  <div class="form-group">
-    <button class="btn btn-info" [routerLink]="['/baby/new']">Add Baby</button>
+  <div class="form-group" [class.d-none]="this._role==='Other'">
+    <button class="btn btn-info"
+            [routerLink]="['/baby/new']"
+            [class.d-none]="this._role==='Other'"
+    >Add Baby
+    </button>
   </div>
+
+  <div class="alert alert-danger"
+       *ngIf="this._findAllBabiesError">
+    {{ this._findAllBabiesError }}
+  </div>
+  <div class="alert alert-danger"
+       *ngIf="this._deleteBabyError">
+    {{ this._deleteBabyError }}
+  </div>
+
   <div class="table-responsive table-bordered table table-hover results">
     <table class="table table-bordered table-hover">
       <thead class="bill-header cs">
@@ -13,22 +27,22 @@
         <th id="trs-hd" class="col-2">Birthday</th>
         <th id="trs-hd" class="col-2">Weight(lb)</th>
         <th id="trs-hd" class="col-2">Height(cm)</th>
-        <th id="trs-hd" class="col-2">Action</th>
+        <th id="trs-hd" class="col-2" [class.d-none]="this._role==='Other'">Action</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let baby of babys" class="d-flex">
+      <tr *ngFor="let baby of this._babies" class="d-flex">
         <td class="col-2">{{baby.name}}</td>
         <td class="col-2">{{baby.gender}}</td>
         <td class="col-2">{{baby.birthday}}</td>
         <td class="col-2">{{baby.weight}}</td>
         <td class="col-2">{{baby.height}}</td>
-        <td class="col-2">
+        <td class="col-2" [class.d-none]="this._role==='Other'">
           <button class="btn btn-success" style="margin-left: 5px;" type="submit">
             <i [routerLink]="['/baby', baby._id]" class="fa fa-edit" style="font-size: 15px;"></i>
           </button>
           <button class="btn btn-danger" style="margin-left: 5px;" type="submit">
-            <i (click)="onRemoveBaby()" class="fa fa-trash" style="font-size: 15px;"></i>
+            <i (click)="onRemoveBaby(baby._id)" class="fa fa-trash" style="font-size: 15px;"></i>
           </button>
         </td>
       </tr>

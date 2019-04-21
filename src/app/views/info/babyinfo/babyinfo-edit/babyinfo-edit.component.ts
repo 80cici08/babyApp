@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {BabyService} from '../../../../services/baby.service';
 
 @Component({
   selector: 'app-babyinfo-edit',
@@ -7,17 +9,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BabyinfoEditComponent implements OnInit {
 
-  // TODO
-  baby: Object = {_id:'888', name: 'Mina', gender: 'Girl', birthday: '2019-01-01', weight: 20, height: 70};
+  private _babyId: string;
+  private _baby: any;
 
-  constructor() { }
+  constructor(private _activatedRoute: ActivatedRoute,
+              private _babyService: BabyService,
+              private _router: Router) {
+  }
 
   ngOnInit() {
+    this._activatedRoute.params.subscribe(
+      params => {
+        this._babyId = params['bid'];
+        this._babyService.findBabyById(this._babyId).subscribe(
+          b => {
+            this._baby = b;
+          },
+          error => {
+            console.log('Error finding the baby by Id!');
+          }
+        );
+      }
+    );
   }
 
   onEditBabyInfo() {
-    // TODO
-    console.log('update baby');
-    console.log(this.baby);
+    this._babyService.updateBaby(this._babyId, this._baby).subscribe(
+      updatedBaby => {
+        console.log('Baby updated to: ');
+        console.log(updatedBaby);
+        this._router.navigate(['/baby']);
+      },
+      error => {
+        console.log('Error updating the baby!');
+      }
+    );
   }
 }
