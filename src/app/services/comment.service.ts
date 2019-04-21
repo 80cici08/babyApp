@@ -12,6 +12,7 @@ export class CommentService {
   private _findAllCommentsForRecordUrl = '/api/record/';
   private _findAllCommentsForUserUrl = '/api/user/';
   private _findCommentByIdUrl = '/api/comment/';
+  private _findAllCommentsUrl = '/api/comments';
   private _updateCommentUrl = '/api/comment/';
   private _deleteCommentUrl = '/api/comment/';
 
@@ -47,6 +48,10 @@ export class CommentService {
 
   findCommentById(commentId: string) {
     return this._http.get<any>(this._findCommentByIdUrl + commentId);
+  }
+
+  findAllComments() {
+    return this._http.get<any>(this._findAllCommentsUrl);
   }
 
   updateComment(commentId: string, comment: any) {

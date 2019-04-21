@@ -28,16 +28,20 @@
       <tr class="warning no-result">
         <td colspan="12"><i class="fa fa-warning"></i>&nbsp; No Result !!!</td>
       </tr>
-      <tr *ngFor="let user of users" class="d-flex">
-        <td class="col-2">{{user.username}}</td>
-        <td class="col-2">{{user.roleName}}</td>
-        <td class="col-2">{{user.username}}</td>
-        <td class="col-2">{{user.username}}</td>
-        <td class="col-2">{{user.username}}</td>
-        <td class="col-1">{{user.username}}</td>
+      <tr *ngFor="let user of this._users" class="d-flex">
+        <td class="col-2" [class.d-none]="user.role==='Admin'">{{user.username}}</td>
+        <td class="col-2" [class.d-none]="user.role==='Admin'">{{user.roleName}}</td>
+        <td class="col-2" [class.d-none]="user.role==='Admin'">{{user.lastLogin}}</td>
+        <td class="col-2" [class.d-none]="user.role==='Admin'">{{user.records.length}}</td>
+        <td class="col-2" [class.d-none]="user.role==='Admin'">{{this._commentsDict[user._id]}}</td>
+        <td class="col-1" [class.d-none]="user.role==='Admin'">{{this._thumbUpsDict[user.username]}}</td>
         <td class="col-1">
-          <button class="btn btn-danger" style="margin-left: 5px;" (click)="onDeleteUser(user._id)"><i class="fa fa-trash"
-                                                                                    style="font-size: 15px;"></i>
+          <button class="btn btn-danger"
+                  style="margin-left: 5px;"
+                  (click)="onDeleteUser(user._id)"
+                  [class.d-none]="user.role==='Admin'">
+            <i class="fa fa-trash"
+               style="font-size: 15px;"></i>
           </button>
         </td>
       </tr>

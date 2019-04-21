@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const db = "mongodb://admin:admin123@ds113815.mlab.com:13815/heroku_tvmcprbv";
+const db = "";
 mongoose.Promise = global.Promise;
 
 const dbConnection = mongoose.connect(

@@ -102,6 +102,7 @@ module.exports = function (app) {
   app.post('/api/login', passport.authenticate('local'), (req, res) => {
     const user = req.user;
     console.log('Logged in...');
+    user.lastLogin = new Date().toLocaleString();
     user.save();
     res.json(user);
   });

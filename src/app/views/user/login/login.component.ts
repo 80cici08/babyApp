@@ -32,7 +32,11 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.username, this.password).subscribe((data: any) => {
       this.errorFlag = false;
       this.sharedService.user = data;
-      this.router.navigate(['/record']);
+      if (data.role === 'Admin') {
+        this.router.navigate(['/admin']);
+      } else {
+        this.router.navigate(['/record']);
+      }
     }, (error: any) => {
       this.errorFlag = true;
       console.log(error);
