@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RecordService} from '../../../services/record.service';
 
 @Component({
   selector: 'app-footprint',
@@ -8,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class FootprintComponent implements OnInit {
   latitude: Number;
   longitude: Number;
+  records: any;
 
-  constructor() {
+  constructor(private recordService: RecordService) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(data => {
         this.latitude = data.coords.latitude;
@@ -20,6 +22,13 @@ export class FootprintComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.recordService.findAllRecords()
+      .subscribe(
+        (data: any[]) => {
+          console.log(data);
+          this.records = data;
+        }
+      );
   }
 
 }

@@ -32,7 +32,11 @@
 
     <div class="form-group">
       <label for="image-URL">URL</label>
-      <input type="text" class="form-control" id="image-URL" placeholder="URL" name="url" [(ngModel)]="record.url">
+      <input type="text" class="form-control" id="image-URL" placeholder="URL" name="url"
+             [(ngModel)]="record.url" required #url="ngModel">
+      <small class="form-text text-danger" *ngIf="!url.valid && url.touched">
+        Please enter url.
+      </small>
     </div>
 
     <div class="form-group" *ngIf="record.type==='Image'">
@@ -92,7 +96,7 @@
         <input class="search form-control" ngx-google-places-autocomplete #placesRef="ngx-places"
                (onAddressChange)="handleAddressChange($event)"/>
         <agm-map [latitude]="record.latitude" [longitude]="record.longitude" (mapClick)="onChoseLocation($event)">
-          <agm-marker *ngIf="locationChosen" [latitude]="record.latitude" [longitude]="record.longitude"></agm-marker>
+          <agm-marker [latitude]="record.latitude" [longitude]="record.longitude"></agm-marker>
         </agm-map>
       </div>
     </div>

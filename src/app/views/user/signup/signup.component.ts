@@ -36,17 +36,14 @@ export class SignupComponent implements OnInit {
     this.verifyPassword = this.loginForm.value.verifyPassword;
     this.role = this.loginForm.value.role;
 
-    if (this.role !== 'Other') {
-      this.roleName = this.role;
-    }
 
     if (this.password !== this.verifyPassword) {
       this.errorFlag = true;
     } else {
       this.errorFlag = false;
-      this.userService.register(this.username, this.password, this.role, this.roleName)
+      const roleNameTemp = this.role === 'Other' ? this.roleName : this.role;
+      this.userService.register(this.username, this.password, this.role, roleNameTemp)
         .subscribe((data: any) => {
-          // TODO 这句最后要去掉，在Loggedin中实现
           this.sharedService.user = data;
           this.router.navigate(['/record']);
         }, (error: any) => {

@@ -43,8 +43,8 @@
 
     <div class="form-group form-inline">
       <label class="mr-2">Relation to Baby: </label>
-      <label *ngIf="user.role!='other'">{{user.roleName}}</label>
-      <input *ngIf="user.role=='other'" [(ngModel)]="user.roleName"
+      <label *ngIf="user.role!='Other'">{{user.roleName}}</label>
+      <input *ngIf="user.role=='Other'" [(ngModel)]="user.roleName"
              class="form-control"
              type="text"
              name="relation" required>

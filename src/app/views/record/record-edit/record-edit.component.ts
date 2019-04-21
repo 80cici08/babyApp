@@ -24,7 +24,7 @@ export class RecordEditComponent implements OnInit {
   record: any;
   userId: string;
   recordId: string;
-  locationChosen: Boolean;
+  // locationChosen: Boolean;
 
   @ViewChild('places') places: GooglePlaceDirective;
   @ViewChild('search') public searchElement: ElementRef;
@@ -37,7 +37,7 @@ export class RecordEditComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private recordService: RecordService) {
-    this.locationChosen = false;
+    // this.locationChosen = false;
     this.record = {name: '', type: 'Image', url: '', latitude: '', longitude: '', date: ''};
   }
 
@@ -59,7 +59,7 @@ export class RecordEditComponent implements OnInit {
   onChoseLocation(event) {
     this.record.latitude = event.coords.lat;
     this.record.longitude = event.coords.lng;
-    this.locationChosen = true;
+    // this.locationChosen = true;
   }
 
   handleAddressChange(address: Address) {
@@ -69,7 +69,7 @@ export class RecordEditComponent implements OnInit {
     console.log(address.geometry.viewport.getNorthEast());
     this.record.longitude = address.geometry.location.lng();
     this.record.latitude = address.geometry.location.lat();
-    this.locationChosen = true;
+    // this.locationChosen = true;
   }
 
   onEditRecord() {
