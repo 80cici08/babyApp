@@ -26,6 +26,7 @@ import { BabyinfoEditComponent } from './views/info/babyinfo/babyinfo-edit/babyi
 import { RecordCommentsComponent } from './views/record/record-list/record-comments/record-comments.component';
 import { FileInputValidator } from './shared/file-input.validator';
 import {AuthGuard} from './services/auth-guard.service';
+import {BabyService} from './services/baby.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import {AuthGuard} from './services/auth-guard.service';
     HttpClientModule,
     GooglePlaceModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, BabyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
