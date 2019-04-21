@@ -15,7 +15,7 @@ export class RecordListComponent implements OnInit {
   latitude: Number;
   longitude: Number;
   records: any;
-  username: string;
+  user: any;
   comment: String;
 
   // records: any = [
@@ -48,8 +48,8 @@ export class RecordListComponent implements OnInit {
   }
 
   ngOnInit() {
-    // 1. get current location, used only for onAddRecord Method
-    this.username = this.sharedService.user.username;
+    // get current location
+    this.user = this.sharedService.user;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(data => {
         this.latitude = data.coords.latitude;
@@ -66,8 +66,8 @@ export class RecordListComponent implements OnInit {
   }
 
   addThumbUp(recordIndex) {
-    let new_thumbUps = [...this.records[recordIndex].thumbUps];
-    new_thumbUps.push(this.username);
+    const new_thumbUps = [...this.records[recordIndex].thumbUps];
+    new_thumbUps.push(this.user.username);
     const recordId = this.records[recordIndex]._id;
     this.records[recordIndex].thumbUps = new_thumbUps;
     this.recordService.updateRecord(recordId, this.records[recordIndex])
@@ -82,7 +82,7 @@ export class RecordListComponent implements OnInit {
 
   removeThumbUp(recordIndex) {
     const new_thumbUps = [...this.records[recordIndex].thumbUps];
-    const index = new_thumbUps.indexOf(this.username);
+    const index = new_thumbUps.indexOf(this.user.username);
     if (index !== -1) {
       new_thumbUps.splice(index, 1);
     }
