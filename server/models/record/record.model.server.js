@@ -5,6 +5,7 @@ const recordModel = mongoose.model('Record', recordSchema, 'Records');
 
 recordModel.createRecordForUser = createRecordForUser;
 recordModel.findAllRecordsForUser = findAllRecordsForUser;
+recordModel.findAllRecordsForOwner = findAllRecordsForOwner;
 recordModel.findAllRecords = findAllRecords;
 recordModel.findRecordById = findRecordById;
 recordModel.updateRecord = updateRecord;
@@ -19,6 +20,9 @@ function createRecordForUser(record) {
 
 function findAllRecordsForUser(uid) {
   return recordModel.find({userId: uid});
+}
+function findAllRecordsForOwner(owner) {
+  return recordModel.find({owner: owner});
 }
 
 function findAllRecords() {

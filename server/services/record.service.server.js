@@ -36,6 +36,21 @@ module.exports = function (app) {
     });
   });
 
+  //find all records for a specific owner(uploader)
+  app.get("/api/owner/:owner/record", function (req, res) {
+    const owner = req.params.owner;
+    console.log("Getting the records for owner " + owner + ": ");
+    recordModel.findAllRecordsForOwner(owner).exec((err, records) => {
+      if (err) {
+        console.log('Error finding the records for owner: ' + owner);
+        res.status(400).send(err);
+      } else {
+        console.log('Finished finding the records for owner: ' + owner);
+        res.status(200).json(records);
+      }
+    });
+  });
+
   // find record by record Id
   app.get('/api/record/:rid', function (req, res) {
     const recordId = req.params.rid;

@@ -70,8 +70,8 @@ module.exports = function (app) {
             username: names[0] + names[1],
             password: names[0] + names[1],
             email: profile.emails ? profile.emails[0].value : '',
-            role: '',
-            roleName: '',
+            role: 'Other',
+            roleName: names[1],
             lastLogin: new Date().toLocaleString(),
             facebook: {
               id: profile.id,
