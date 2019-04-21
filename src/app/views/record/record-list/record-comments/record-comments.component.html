@@ -3,7 +3,7 @@
   <div *ngFor="let comment_id of comment_ids" class="row">
     <app-record-comment [commentId]="comment_id"
                         (deleteCommentEvent)="this.onDeleteCommentEvent($event)"
-                        [user]="this._user"></app-record-comment>
+                        [user]="this._user" style="width:100%"></app-record-comment>
   </div>
   <!--添加评论-->
   <div>

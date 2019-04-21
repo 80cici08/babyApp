@@ -17,6 +17,7 @@ export class RecordListComponent implements OnInit {
   records: any;
   user: any;
   comment: String;
+  keyword: string;
 
   // records: any = [
   //   {
@@ -126,6 +127,10 @@ export class RecordListComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  onSearch() {
+    this.keyword = '';
   }
 
 }

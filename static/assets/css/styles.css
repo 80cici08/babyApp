@@ -2,6 +2,10 @@ body {
   line-height: 1;
 }
 
+.fab {
+  font-family: "Font Awesome 5 Brands";
+}
+
 input.form-control {
   margin-bottom: 5px;
 }

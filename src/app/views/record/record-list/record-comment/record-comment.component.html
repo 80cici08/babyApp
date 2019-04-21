@@ -1,6 +1,6 @@
 <div class="col-md-12">
   <strong>{{this.commentUsername}}</strong>
-  <span class="float-right">{{comment.dateCreated.substr(0, 10)}}</span>
+  <span style="float:right">{{comment.dateCreated.substr(0, 10)}}</span>
   <p>{{comment.text}}<i *ngIf="this.currentUser._id===this.comment.userId" class="icon-delete" aria-hidden="true"
                         (click)="onDeleteComment()" style="cursor: pointer"></i>
   </p>
