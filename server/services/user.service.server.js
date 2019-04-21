@@ -19,8 +19,8 @@ module.exports = function (app) {
   //   callbackURL: process.env.FACEBOOK_CALLBACK_URL
   // };
   const facebookConfig = {
-    clientID: process.env.FACEBOOK_CLIENT_ID || '263678167908950',
-    clientSecret: process.env.FACEBOOK_CLIENT_SECRET || 'e3673569bc87b2b5c222a742445585b3',
+    clientID: process.env.FACEBOOK_CLIENT_ID || '435609387192709',
+    clientSecret: process.env.FACEBOOK_CLIENT_SECRET || '07cb73bb3e8cc27c174baf6253f4b862',
     callbackURL: process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:3200/auth/facebook/callback'
   };
   const bcrypt = require('bcrypt-nodejs');
@@ -67,8 +67,8 @@ module.exports = function (app) {
         } else {
           const names = profile.displayName.split(' ');
           const newFacebookUser = {
-            firstName: names[0],
-            lastName: names[1],
+            username: names[0] + names[1],
+            password: names[0] + names[1],
             email: profile.emails ? profile.emails[0].value : '',
             role: '',
             roleName: '',
@@ -94,7 +94,7 @@ module.exports = function (app) {
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook',
       {
-        successRedirect: '/#/profile',
+        successRedirect: '/#/record',
         failureRedirect: '/#/login'
       }));
 
