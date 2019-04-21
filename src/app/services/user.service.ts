@@ -16,6 +16,7 @@ export class UserService {
 
   // the http REST call urls
   private _findUserByIdUrl = '/api/user/';
+  private _findAllUsersUrl = '/api/users';
   private _findUserByUsernameUrl = '/api/user?username=';
   private _findUserByCredentialsUrl = '/api/user?username=';
   private _updateUserUrl = '/api/user/';
@@ -95,6 +96,10 @@ export class UserService {
 
   findUserById(userId: string) {
     return this._http.get<any>(this._findUserByIdUrl + userId);
+  }
+
+  findAllUsers() {
+    return this._http.get<any>(this._findAllUsersUrl);
   }
 
   findUserByUsername(username: string) {

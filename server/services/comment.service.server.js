@@ -95,6 +95,20 @@ module.exports = function (app) {
     });
   });
 
+  // find all comments
+  app.get('/api/comments', (req, res) => {
+    console.log('Finding all comments for the admin purpose...');
+    commentModel.findAllComments().exec((err, comments) => {
+      if (err) {
+        console.log('Error finding the comments for admin purpose!');
+        res.status(400).send(err);
+      } else {
+        console.log('Finished finding all comments for admin purpose.');
+        res.status(200).json(comments);
+      }
+    });
+  });
+
   // update a comment by its id
   app.put("/api/comment/:cid", function (req, res) {
     const commentId = req.params.cid;
@@ -140,7 +154,6 @@ module.exports = function (app) {
       }
     });
   });
-
 
 
 };

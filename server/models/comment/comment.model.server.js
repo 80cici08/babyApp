@@ -6,6 +6,7 @@ const commentModel = mongoose.model('Comment', commentSchema, 'Comments');
 commentModel.createComment = createComment;
 commentModel.findAllCommentsForRecord = findAllCommentsForRecord;
 commentModel.findAllCommentsForUser = findAllCommentsForUser;
+commentModel.findAllComments = findAllComments;
 commentModel.findCommentById = findCommentById;
 commentModel.updateComment = updateComment;
 commentModel.deleteComment = deleteComment;
@@ -23,6 +24,10 @@ function findAllCommentsForRecord(rid) {
 
 function findAllCommentsForUser(uid) {
   return commentModel.find({userId: uid});
+}
+
+function findAllComments() {
+  return commentModel.find({});
 }
 
 function findCommentById(cid) {
