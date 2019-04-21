@@ -66,7 +66,7 @@ export class RecordListComponent implements OnInit {
   }
 
   addThumbUp(recordIndex) {
-    let new_thumbUps = [...this.records[recordIndex].thumbUps];
+    const new_thumbUps = [...this.records[recordIndex].thumbUps];
     new_thumbUps.push(this.user.username);
     const recordId = this.records[recordIndex]._id;
     this.records[recordIndex].thumbUps = new_thumbUps;
