@@ -334,7 +334,7 @@ module.exports = function (app) {
       // get the const variables
       const userId = req.body.userId;
       const recordId = req.body.recordId;
-      const recordListUrl = `/record/${recordId}`;
+      const recordListUrl = `#/record/${recordId}`;
       if (err) {
         console.log(err.message);
         res.status(400).send(err.message);
