@@ -14,6 +14,15 @@ module.exports = function (app) {
   const LocalStrategy = require('passport-local').Strategy;
   const FacebookStrategy = require('passport-facebook').Strategy;
 
+  // delegate the authentication to facebook
+  app.get('/facebook/login', passport.authenticate('facebook', {scope: 'email'}));
+  app.get('/auth/facebook/callback',
+    passport.authenticate('facebook',
+      {
+        successRedirect: '/#/record',
+        failureRedirect: '/#/login'
+      }));
+
   const facebookConfig = {
     clientID: process.env.FACEBOOK_CLIENT_ID,
     clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
@@ -85,14 +94,6 @@ module.exports = function (app) {
     );
   }
 
-  // delegate the authentication to facebook
-  app.get('/facebook/login', passport.authenticate('facebook', {scope: 'email'}));
-  app.get('/auth/facebook/callback',
-    passport.authenticate('facebook',
-      {
-        successRedirect: '/#/record',
-        failureRedirect: '/#/login'
-      }));
 
   // login service call
   app.post('/api/login', passport.authenticate('local'), (req, res) => {
