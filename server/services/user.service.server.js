@@ -26,10 +26,10 @@ module.exports = function (app) {
 
 
   passport.use(new LocalStrategy(localStrategyCallback));
-  const facebookConfig = {
-    clientID: process.env.FACEBOOK_CLIENT_ID || '435609387192709',
-    clientSecret: process.env.FACEBOOK_CLIENT_SECRET || '07cb73bb3e8cc27c174baf6253f4b862',
-    callbackURL: process.env.FACEBOOK_CALLBACK_URL || 'https://babyapp-5610.herokuapp.com/auth/facebook/callback'
+  var facebookConfig = {
+    clientID: process.env.FACEBOOK_CLIENT_ID,
+    clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+    callbackURL: process.env.FACEBOOK_CALLBACK_URL
   };
 
   passport.use(new FacebookStrategy(facebookConfig, facebookStrategyCallback));
@@ -91,8 +91,14 @@ module.exports = function (app) {
         if (err) {
           return done(err, null);
         }
-      }
-    );
+      })
+      .then(function (user) {
+        return done(null, user);
+      }, function (err) {
+        if (err) {
+          return done(err);
+        }
+      });
   }
 
 
