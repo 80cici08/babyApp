@@ -130,6 +130,16 @@ export class RecordListComponent implements OnInit {
   }
 
   onSearch() {
+    this.recordService.findRecordsByOwner(this.keyword)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.records = data;
+        },
+        error => {
+          console.log(error);
+        }
+      );
     this.keyword = '';
   }
 

@@ -12,6 +12,7 @@ export class RecordService {
   private _findAllRecordsForUserUrl = '/api/user/';
 
   private _findAllRecordsUrl = '/api/records';
+  private _findAllRecordsForOwnerUrl = '/api/owner/';
   private _findRecordByIdUrl = '/api/record/';
   private _updateRecordUrl = '/api/record/';
   private _deleteRecordUrl = '/api/record/';
@@ -39,6 +40,10 @@ export class RecordService {
 
   findRecordsByUser(userId: string) {
     return this._http.get<any>(this._findAllRecordsForUserUrl + userId + '/record');
+  }
+
+  findRecordsByOwner(owner: string) {
+    return this._http.get<any>(this._findAllRecordsForOwnerUrl + owner + '/record');
   }
 
   findAllRecords() {
