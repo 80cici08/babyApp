@@ -21,7 +21,7 @@ module.exports = function (app) {
   const facebookConfig = {
     clientID: process.env.FACEBOOK_CLIENT_ID || '435609387192709',
     clientSecret: process.env.FACEBOOK_CLIENT_SECRET || '07cb73bb3e8cc27c174baf6253f4b862',
-    callbackURL: process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:3200/auth/facebook/callback'
+    callbackURL: process.env.FACEBOOK_CALLBACK_URL || 'https://babyapp-5610.herokuapp.com/auth/facebook/callback'
   };
   const bcrypt = require('bcrypt-nodejs');
 
