@@ -40,7 +40,7 @@
 
     <div class="form-group form-inline">
       <label class="mr-2">Relation to Baby: </label>
-      <input *ngIf="user.role!='Other'" readonly="readonly" value="user.roleName" class="form-control" type="text">
+      <input *ngIf="user.role!='Other'" readonly="readonly" [value]="user.roleName" class="form-control" type="text">
       <input *ngIf="user.role=='Other'" [(ngModel)]="user.roleName"
              class="form-control"
              type="text"
