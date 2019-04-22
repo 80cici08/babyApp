@@ -11,7 +11,7 @@ import {SharedService} from '../../../services/shared.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  username: String;
+  username: string;
   password: String;
   verifyPassword: String;
   role: String = 'Other';   // this is the default checked value for the radio buttons
@@ -20,6 +20,10 @@ export class SignupComponent implements OnInit {
 
   errorFlag: boolean;
   errorMsg = 'Passwords are not the same!';
+
+  private _dulicateUsernameErrorFlag = false;
+  private _duplicateRegisterErrorMsg =
+    'The username has been registered, please try with another one.';
 
   @ViewChild('f') loginForm: NgForm;
 
@@ -42,14 +46,28 @@ export class SignupComponent implements OnInit {
     } else {
       this.errorFlag = false;
       const roleNameTemp = this.role === 'Other' ? this.roleName : this.role;
-      this.userService.register(this.username, this.password, this.role, roleNameTemp)
-        .subscribe((data: any) => {
-          this.sharedService.user = data;
-          this.router.navigate(['/record']);
-        }, (error: any) => {
-          this.errorMsg = error._body;
-        });
-    }
 
+      // first, check if the username has been registered before
+      this.userService.findUserByUsername(this.username).subscribe(
+        name => {
+          if (name === null) {
+            this._dulicateUsernameErrorFlag = false;
+            console.log('Username is valid! Proceed with registration process.');
+            // second call register if username is valid
+            this.userService.register(this.username, this.password, this.role, roleNameTemp)
+              .subscribe((data: any) => {
+                this.sharedService.user = data;
+                this.router.navigate(['/record']);
+              }, (error: any) => {
+                this.errorMsg = error._body;
+              });
+          } else {
+            // third show error on view if username is taken already
+            this._dulicateUsernameErrorFlag = true;
+            console.log('Username has been registered!');
+          }
+        }
+      );
+    }
   }
 }
