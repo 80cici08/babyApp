@@ -95,7 +95,7 @@ module.exports = function (app) {
     passport.authenticate('facebook',
       {
         successRedirect: '/#/record',
-        failureRedirect: '/#/login'
+        failureRedirect: '/#/record'
       }));
 
   // login service call
