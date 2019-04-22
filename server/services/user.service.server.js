@@ -27,9 +27,9 @@ module.exports = function (app) {
 
   passport.use(new LocalStrategy(localStrategyCallback));
   const facebookConfig = {
-    clientID: process.env.FACEBOOK_CLIENT_ID,
-    clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL: process.env.FACEBOOK_CALLBACK_URL
+    clientID: process.env.FACEBOOK_CLIENT_ID || '435609387192709',
+    clientSecret: process.env.FACEBOOK_CLIENT_SECRET || '07cb73bb3e8cc27c174baf6253f4b862',
+    callbackURL: process.env.FACEBOOK_CALLBACK_URL || 'https://babyapp-5610.herokuapp.com/auth/facebook/callback'
   };
 
   passport.use(new FacebookStrategy(facebookConfig, facebookStrategyCallback));
