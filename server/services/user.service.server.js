@@ -2,7 +2,11 @@ const express = require('express');
 const path = require('path');
 const multer = require('multer');
 const ejs = require('ejs');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 
+const bcrypt = require('bcrypt-nodejs');
 module.exports = function (app) {
 
   // get hold of the user model, record model and comment model
@@ -10,9 +14,6 @@ module.exports = function (app) {
   const recordModel = require('../models/record/record.model.server');
   const commentModel = require('../models/comment/comment.model.server');
 
-  const passport = require('passport');
-  const LocalStrategy = require('passport-local').Strategy;
-  const FacebookStrategy = require('passport-facebook').Strategy;
 
   // delegate the authentication to facebook
   app.get('/facebook/login', passport.authenticate('facebook', {scope: 'email'}));
@@ -23,18 +24,18 @@ module.exports = function (app) {
         failureRedirect: '/#/login'
       }));
 
+
+  passport.use(new LocalStrategy(localStrategyCallback));
   const facebookConfig = {
     clientID: process.env.FACEBOOK_CLIENT_ID,
     clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
     callbackURL: process.env.FACEBOOK_CALLBACK_URL
   };
-  const bcrypt = require('bcrypt-nodejs');
 
+  passport.use(new FacebookStrategy(facebookConfig, facebookStrategyCallback));
   // to serialize and deserialize the user
   passport.serializeUser(serializeUser);
   passport.deserializeUser(deserializeUser);
-  passport.use(new LocalStrategy(localStrategyCallback));
-  passport.use(new FacebookStrategy(facebookConfig, facebookStrategyCallback));
 
   function serializeUser(user, done) {
     done(null, user);
