@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -20,7 +20,9 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UserService,
               private activatedRouter: ActivatedRoute,
               private sharedService: SharedService,
-              private router: Router) { this.errorFlag = false;}
+              private router: Router) {
+    this.errorFlag = false;
+  }
 
   ngOnInit() {
     this.user = this.sharedService.user;
@@ -28,9 +30,13 @@ export class ProfileComponent implements OnInit {
 
   onUpdateProfile() {
     if (!!this.profileForm.valid) {
+      if (this.user.role !== 'Other') {
+        this.user.roleName = this.user.role;
+      }
       this.userService.updateUser(this.user._id, this.user)
         .subscribe(
           data => {
+            console.log(this.user);
             this.user = data;
           },
           error => {

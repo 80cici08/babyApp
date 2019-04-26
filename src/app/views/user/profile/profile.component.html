@@ -1,8 +1,9 @@
 <!--Header-->
 <div class="navbar navbar-light bg-light fixed-top">
   <div class="container-fluid">
-    <a class="navbar-text" [routerLink]="['/record']"><i
-      class="fas fa-angle-left fontawsome_icon"></i></a>
+    <a *ngIf="user.role!=='Admin'" class="navbar-text" [routerLink]="['/record']"><i class="fas fa-angle-left fontawsome_icon"></i></a>
+    <a *ngIf="user.role==='Admin'" class="navbar-text" [routerLink]="['/admin']"><i class="fas fa-angle-left fontawsome_icon"></i></a>
+
     <span class="navbar-brand">&nbsp;Profile</span>
     <a class="navbar-text ml-auto" href="/login">Logout</a>
   </div>
@@ -38,14 +39,34 @@
       </small>
     </div>
 
-    <div class="form-group form-inline">
-      <label class="mr-2">Relation to Baby: </label>
-      <input *ngIf="user.role!='Other'" readonly="readonly" [value]="user.roleName" class="form-control" type="text">
-      <input *ngIf="user.role=='Other'" [(ngModel)]="user.roleName"
-             class="form-control"
-             type="text"
-             name="relation" required>
+    <!--<div class="form-group form-inline">-->
+      <!--<label class="mr-2">Relation to Baby: </label>-->
+      <!--<input *ngIf="user.role!='Other'" readonly="readonly" [value]="user.roleName" class="form-control" type="text">-->
+      <!--<input *ngIf="user.role=='Other'" [(ngModel)]="user.roleName"-->
+             <!--class="form-control"-->
+             <!--type="text"-->
+             <!--name="relation" required>-->
+    <!--</div>-->
+
+    <div *ngIf="user.role!=='Admin'" class="form-group" required>
+      <div><label class="text-secondary">Relation to Baby</label></div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="role" id="inlineRadio1" [(ngModel)]="user.role" value="Mom">
+        <label class="form-check-label" for="inlineRadio1">Mom</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="role" id="inlineRadio2" [(ngModel)]="user.role" value="Dad">
+        <label class="form-check-label" for="inlineRadio2">Dad</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="role" id="inlineRadio3" [(ngModel)]="user.role"
+               value="Other">
+        <label class="form-check-label" for="inlineRadio3">Other&nbsp;&nbsp;</label>
+        <input *ngIf="user.role==='Other'" class="form-control col-6" type="text" name="roleName" [(ngModel)]="user.roleName"
+               [required]="user.role==='Other'">
+      </div>
     </div>
+
     <div class="form-group">
       <button [disabled]="!f.valid" class="btn btn-info" type="submit">Save</button>
       <a class="btn btn-success ml-2" [routerLink]="['/record']">Go to Baby's photo album</a>
